@@ -24,4 +24,9 @@ public class HomeController {
 		return "index";
 	}
 	
+	@RequestMapping(value = "/bd", method = RequestMethod.GET)
+	public String board() {
+		return "board";
+	}
+	
 }

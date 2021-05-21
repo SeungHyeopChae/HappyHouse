@@ -257,6 +257,7 @@
 							장상인 대표, 제6회 INAK사회공헌대상 프레스클럽부문 ‘시민봉사대상’ 수상?</a></li>
 					<li style="margin-bottom: 5px;"><a class="text text-primary">삼성전자,
 							한샘과 공동사업 강화 위한 업무협약 체결</a></li>
+					<li><a href="${root}/bd">임시 뷰</a></li>
 				</ul>
 				<hr>
 			</div>
