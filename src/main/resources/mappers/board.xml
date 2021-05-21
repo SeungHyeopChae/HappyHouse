@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.happyhouse.model.mapper.BoardMapper">
+
+	<!-- 전체 책 조회 -->
+	<select id="list" resultType="boardDto">
+		select bno, title, author, content
+		from board
+	</select>
+	
+	<!-- isbn에 따른 책 상세 조회 -->
+	<select id="search" resultType="boardDto">
+		select bno, title, author, content
+		from board
+		where bno = #{bno}
+	</select>
+
+	<!-- 책 정보 등록 -->
+	<insert id="create" parameterType="boardDto">
+		insert into board(
+			title, author, content
+		) values (
+			#{title}, #{author}, #{content}
+		)
+	</insert>
+	
+	<!-- 책 정보 수정 -->
+	<update id="modify" parameterType="boardDto">
+		update board
+		set title = #{title}, 
+			author = #{author}, 
+			content = #{content}
+		 where bno = #{bno}
+	</update>
+
+	<!-- isbn에 따른 도서평 댓글 삭제 -->
+	<delete id="deleteComment" parameterType="String">
+		delete
+		from comments
+		where bno = #{bno}
+	</delete>
+	
+	<!-- isbn에 따른 책 정보 삭제 -->
+	<delete id="delete" parameterType="String">
+		delete
+		from board
+		where bno = #{bno}
+	</delete>
+
+</mapper>
+
