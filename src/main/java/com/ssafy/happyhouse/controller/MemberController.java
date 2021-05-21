@@ -22,6 +22,7 @@ public class MemberController {
 
 	@Autowired
 	private MemberService memberService;
+	
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login() {
@@ -32,9 +33,11 @@ public class MemberController {
 	public String login(@RequestParam Map<String, String> map, Model model, HttpSession session, HttpServletResponse response) {
 		try {
 			MemberDto memberDto = memberService.login(map);
-			System.out.println(map);
+//			System.out.println(map);
+			System.out.println(memberDto.toString());
 			if(memberDto != null) {
-				session.setAttribute("userinfo", memberDto);			
+				session.setAttribute("userinfo", memberDto);
+				System.out.println(memberDto.getUserPwd());
 				Cookie cookie = new Cookie("ssafy_id", memberDto.getUserId());
 				cookie.setPath("/");
 				if("saveok".equals(map.get("idsave"))) {
@@ -69,7 +72,7 @@ public class MemberController {
 	@RequestMapping(value = "/regist", method = RequestMethod.POST)
 	public String regist(MemberDto memberDto, Model model, HttpSession session) {
 		try {
-			System.out.println(memberDto);
+//			System.out.println(memberDto);
 			memberService.registerMember(memberDto);
 			return "index";
 		} catch (Exception e) {

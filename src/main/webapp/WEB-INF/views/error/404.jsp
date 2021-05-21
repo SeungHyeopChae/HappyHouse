@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>SSAFY 도서 예외</title>
+<title>HappyHouse Exception</title>
 </head>
 <body>
 <div class="container">

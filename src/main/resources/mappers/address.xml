@@ -5,14 +5,14 @@
 <mapper namespace="com.ssafy.happyhouse.model.mapper.AddressMapper">
    <select id="getGugunList" resultType="AddressDto">
       select gugun
-      from address 
+      from baseaddress
       where city= #{sicode} 
       group by gugun
    </select>
    
    <select id="getDongList" resultType="AddressDto">
       select dong
-      from address 
+      from baseaddress 
       where gugun= #{guguncode} 
       group by dong
    </select>
