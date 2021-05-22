@@ -24,55 +24,57 @@
 <script type="text/javascript">
 $(function(){
     $("#city").change(function(){
-        var act="searchgugun";
             $.ajax({
-                url : '${root }/main', //데이터베이스에 접근해 현재페이지로 결과를 뿌려줄 페이지
-                mathod : 'post',
-                data : {
-                     "act": act, "si": $('#city').val() 
-                },
-                datatype:"json",
+                url : "${root}/address/gugun", //데이터베이스에 접근해 현재페이지로 결과를 뿌려줄 페이지
+                type : "POST",
+                data : {"si" : $('#city').val()},
                 success : function(data){ //DB접근 후 가져온 데이터
                     var list='';
                     $("#gu").empty();
-                    $.each(data, function(index,item){
-                    	console.log(data);
-                        list='';
-                        list+= "<option value=" +item.gugun+" >"+item.gugun+"</option>";
+                    $("#dong").empty();
+                    var delist='';
+                    delist+="<option value="+"all"+">"+"시/도/군"+"</option>";
+                    $("#gu").append(delist);
+                    delist='';
+                    delist+="<option value="+"all"+">"+"동"+"</option>";
+                    $("#dong").append(delist);
+                    for(var i = 0; i<data.length;i++){
+                    	console.log(data[i].gugun);
+                    	list='';
+                    	list+="<option value=" +data[i].gugun+" >"+data[i].gugun+"</option>";
                         $("#gu").append(list);
-                    });
+                    }
                 }
             })
         })
     
     $("#gu").change(function(){
-        var act="searchdong";
             $.ajax({
-                url : '${root }/main', //데이터베이스에 접근해 현재페이지로 결과를 뿌려줄 페이지
-                mathod : 'post',
-                data : {
-                     "act": act, "gu": $('#gu').val() 
-                },
-                datatype:"json",
+                url : "${root}/address/dong", //데이터베이스에 접근해 현재페이지로 결과를 뿌려줄 페이지
+                type : "POST",
+                data : {"gu": $('#gu').val()},
                 success : function(data){ //DB접근 후 가져온 데이터
                     var list='';
                     $("#dong").empty();
-                    $.each(data, function(index,item){
-                        list='';
-                        list+= "<option value=" +item.dong+" >"+item.dong+"</option>";
+                    var delist='';
+                    delist+="<option value="+"all"+">"+"동"+"</option>";
+                    $("#dong").append(delist);
+                    for(var i = 0; i<data.length;i++){
+                    	list='';
+                    	list+="<option value=" +data[i].dong+" >"+data[i].dong+"</option>";
                         $("#dong").append(list);
-                    });
+                    }
                 }
             })
         })
 })
 </script>
 <script>
-$(document).ready(function() {
-	$("#regiarea").click(function() {
-			$("#frm").attr("action", "${root}/main?act=likearea").submit();
-	});
-});
+	function insertLikeArea() {
+		alert("등록하시겠습니까?");
+		document.getElementById("frm").action = "${root}/likearea/regist";
+		document.getElementById("frm").submit();
+	}
 
 </script>
 
@@ -90,7 +92,7 @@ $(document).ready(function() {
 </style>
 </head>
 <body>
-	<%@ include file="../viewers/header.jsp" %>
+	<%@ include file="viewers/header.jsp" %>
 	<div class="breadcrumb-container">
 		<div class="container-fluid">
 			<ol class="breadcrumb">
@@ -163,7 +165,7 @@ $(document).ready(function() {
 				</div>
 				 <div>
                        <button type="button" class="btn btn-warning marginTop">닫기 ✔</button>
-                       <button type="button" id="regiarea" class="btn btn-warning marginTop">등록 ✔</button>
+                       <button type="button" id="regiarea" class="btn btn-warning marginTop" onclick="javascript:insertLikeArea();">등록 ✔</button>
                  </div>
 				
 			</form>
@@ -174,7 +176,7 @@ $(document).ready(function() {
 
 
 	<!--하단-->
-	<%@include file="../viewers/footer.jsp" %>
+	<%@include file="viewers/footer.jsp" %>
 
 	<script src="${root}/js/jquery.min.js"></script>
 	<script src="${root}/js/bootstrap.bundle.min.js"></script>

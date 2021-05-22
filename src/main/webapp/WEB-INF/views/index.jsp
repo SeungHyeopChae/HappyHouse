@@ -97,6 +97,13 @@
                     success : function(data){ //DB접근 후 가져온 데이터
                         var list='';
                         $("#gu").empty();
+                        $("#dong").empty();
+                        var delist='';
+                        delist+="<option value="+"all"+">"+"시/도/군"+"</option>";
+                        $("#gu").append(delist);
+                        delist='';
+                        delist+="<option value="+"all"+">"+"동"+"</option>";
+                        $("#dong").append(delist);
                         for(var i = 0; i<data.length;i++){
                         	console.log(data[i].gugun);
                         	list='';
@@ -115,6 +122,9 @@
                     success : function(data){ //DB접근 후 가져온 데이터
                         var list='';
                         $("#dong").empty();
+                        var delist='';
+                        delist+="<option value="+"all"+">"+"동"+"</option>";
+                        $("#dong").append(delist);
                         for(var i = 0; i<data.length;i++){
                         	list='';
                         	list+="<option value=" +data[i].dong+" >"+data[i].dong+"</option>";

@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ssafy.happyhouse.model.MemberDto;
 import com.ssafy.happyhouse.model.service.MemberService;
@@ -114,6 +115,13 @@ public class MemberController {
 	public String forget() {
 		return "member/forget";
 	}
+	
+	@RequestMapping(value = "/check", method = RequestMethod.POST)
+	public @ResponseBody MemberDto getMember(@RequestParam("userId") String userId, Model model, HttpSession session) {
+		MemberDto memberDto = memberService.getMember(userId);
+		return memberDto;
+	}
+			
 	
 }
 

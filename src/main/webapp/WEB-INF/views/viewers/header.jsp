@@ -280,7 +280,7 @@
 													</li>
 													<li class="nav-item dropdown mega-menu mega-menu--wide">
 														<!-- <a href="foodBestList.do?id=n" class="nav-link dropdown-toggle" id="second-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">영양 정보</a> -->
-														<a href="${root }/main?act=likeregi" class="nav-link"
+														<a href="${root}/likearea/regist" class="nav-link"
 														id="second-dropdown" aria-haspopup="true"
 														aria-expanded="false">관심지역 설정</a>
 													</li>
