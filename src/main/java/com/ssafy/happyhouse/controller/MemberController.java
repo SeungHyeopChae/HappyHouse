@@ -34,10 +34,10 @@ public class MemberController {
 		try {
 			MemberDto memberDto = memberService.login(map);
 //			System.out.println(map);
-			System.out.println(memberDto.toString());
+//			System.out.println(memberDto.toString());
 			if(memberDto != null) {
 				session.setAttribute("userinfo", memberDto);
-				System.out.println(memberDto.getUserPwd());
+//				System.out.println(memberDto.getUserPwd());
 				Cookie cookie = new Cookie("ssafy_id", memberDto.getUserId());
 				cookie.setPath("/");
 				if("saveok".equals(map.get("idsave"))) {

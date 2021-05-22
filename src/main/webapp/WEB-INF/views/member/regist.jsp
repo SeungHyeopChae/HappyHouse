@@ -98,7 +98,7 @@
                         <div class="row marginTop"> 
                             <h6>이메일 </h6>
                             <p class="text-warning"> *</p>
-                            <input type="text"  id="eamil" name="eamil" placeholder="">
+                            <input type="text"  id="email" name="email" placeholder="">
                         </div>
                 
                         

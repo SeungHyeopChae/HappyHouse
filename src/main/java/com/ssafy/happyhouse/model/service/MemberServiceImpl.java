@@ -19,31 +19,29 @@ public class MemberServiceImpl implements MemberService {
 	public boolean registerMember(MemberDto memberDto) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		String securePwd = encoder.encode(memberDto.getUserPwd());
-		System.out.println(securePwd);
+//		System.out.println(securePwd);
 		memberDto.setUserPwd(securePwd);
 		return memberMapper.registerMember(memberDto) == 1;
 	}
 
-	// 수정할부분 ********************************* 완성못함 
+	// 수정부분 ********************************* 완성
 	@Override
 	public MemberDto login(Map<String, String> map) {
-		if(map.get("userid") == null || map.get("userpwd") == null) { 
-			return null; 
-		} else {
+		if(map.get("userid") == null || map.get("userpwd") == null) 
+			return null;
 
 			String inputPwd = memberMapper.getMember(map.get("userid")).getUserPwd();
 			String rawPwd = map.get("userpwd");
-			System.out.println("입력 : " + inputPwd);
-			System.out.println("바뀐비번 : " + rawPwd);
-			MemberDto mem = null;
+//			System.out.println("입력 : " + inputPwd);
+//			System.out.println("바뀐비번 : " + rawPwd);
+			
 			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 			if(encoder.matches(rawPwd, inputPwd)) {
-				System.out.println("입력 비번2 : " + inputPwd + " 변환 비번 : " + rawPwd);
-				mem =   memberMapper.login(map);
-			}
-			return mem;
-
-		}
+//				System.out.println("입력 비번2 : " + inputPwd + " 변환 비번 : " + rawPwd);
+				map.replace("userpwd", inputPwd);
+				return memberMapper.login(map);
+			} else
+				return null;
 	}
 
 	@Override
@@ -53,6 +51,9 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public boolean modifyMember(MemberDto memberDto) {
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		String securePwd = encoder.encode(memberDto.getUserPwd());
+		memberDto.setUserPwd(securePwd);
 		return memberMapper.modifyMember(memberDto) == 1;
 	}
 
