@@ -7,7 +7,7 @@
    <select id="login" parameterType="map" resultType="MemberDto">
       select username, userid, email , address
       from ssafy_member 
-      where userid = #{userid} and userpwd = #{userpwd} 
+      where userid = #{userid} and userpwd = #{userpwd}
    </select>
 
    <insert id="registerMember" parameterType="MemberDto">
@@ -29,6 +29,5 @@
    <delete id="deleteMember" parameterType="String">
       delete from ssafy_member where userid=#{userId}
    </delete>
-   
 
 </mapper>

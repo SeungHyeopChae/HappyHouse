@@ -89,60 +89,51 @@
 		</div>
 	</div>
 
-	<div class="container-fluid p-3 my-3text-white"
-		style="background-color: #707070;">
-		<div class="container p-3 my-3">
-			<div class="row justify-content-center"
-				style="background-color: #F9F9F9; height: 500px;">
-				<div class="row" style="margin-top: 20px;">
-					<h2 class="title">회원가입</h2>
-				</div>
-				<div class="light-gray-bg border-clear" style="margin-top: 70px;">
-					<div>
-						<form id="memberform" method="post" action="">
-							<input type="hidden" name="act" id="act" value="join">
-							<div class="row marginTop">
-								<h6>아이디</h6>
-								<p class="text-warning">*</p>
-								<input type="text" id="userId" name="userId" placeholder="">
-								<button type="button" class="btn btn-warning marginTop"
-									onclick="javascript:check();">중복체크</button>
-							</div>
-							<div class="row marginTop">
-								<h6>비밀번호</h6>
-								<p class="text-warning">*</p>
-								<input type="password" id="userPwd" name="userPwd"
-									placeholder="">
-							</div>
-							<div class="row marginTop">
-								<h6>이름</h6>
-								<p class="text-warning">*</p>
-								<input type="text" id="userName" name="userName" placeholder="">
-							</div>
-							<div class="row marginTop">
-								<h6>주소</h6>
-								<p class="text-warning">*</p>
-								<input type="text" id="address" name="address" placeholder="">
-							</div>
-							<div class="row marginTop">
-								<h6>이메일</h6>
-								<p class="text-warning">*</p>
-								<input type="text" id="email" name="email" placeholder="">
-							</div>
-
-
-							<div>
-								<button type="button" class="btn btn-warning marginTop"
-									onclick="javascript:regist();">등록 ✔</button>
-							</div>
-
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
+    <div class="container-fluid p-3 my-3text-white" style="background-color: #707070;">
+        <div class="container p-3 my-3">
+            <div class="row justify-content-center" style="background-color: #F9F9F9; height:500px;">
+                <div class="row" style="margin-top: 20px;"><h2 class="title">회원가입</h2></div>
+                <div class="light-gray-bg border-clear" style="margin-top: 70px;">
+                    <div>
+                     <form id="memberform" method="post" action="">
+						<input type="hidden" name="act" id="act" value="join">
+                        <div class="row marginTop"> 
+                            <h6>아이디 </h6>
+                            <p class="text-warning"> *</p>
+                            <input type="text"  id="userId" name="userId" placeholder="">
+                        </div>
+                        <div class="row marginTop"> 
+                            <h6>비밀번호 </h6>
+                            <p class="text-warning"> *</p>
+                            <input type="password"  id="userPwd" name="userPwd" placeholder="">
+                        </div>
+                        <div class="row marginTop"> 
+                            <h6>이름 </h6>
+                            <p class="text-warning"> *</p>
+                            <input type="text"  id="userName" name="userName" placeholder="">
+                        </div>
+                        <div class="row marginTop"> 
+                            <h6>주소 </h6>
+                            <p class="text-warning"> *</p>
+                            <input type="text"  id="address" name="address" placeholder="">
+                        </div>
+                        <div class="row marginTop"> 
+                            <h6>이메일 </h6>
+                            <p class="text-warning"> *</p>
+                            <input type="text"  id="email" name="email" placeholder="">
+                        </div>
+                
+                        
+                        <div>
+                            <button type="button" class="btn btn-warning marginTop" onclick="javascript:regist();">등록 ✔</button>
+                        </div>
+                        
+                      </form>
+                    </div>
+                </div>
+            </div>
+          </div>
+      </div>
 
 	<!--하단-->
 	<%@ include file="../viewers/footer.jsp"%>

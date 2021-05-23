@@ -31,7 +31,7 @@ public class LikeAreaController {
 		MemberDto memberDto = (MemberDto) session.getAttribute("userinfo");
 		try {
 			System.out.println(likeAreaDto);
-			likeAreaService.getLikeArea(memberDto.getUserId());
+			LikeAreaDto like = likeAreaService.getLikeArea(memberDto.getUserId());
 			System.out.println(memberDto.getUserId());
 			likeAreaDto.setUserid(memberDto.getUserId());
 			likeAreaService.registerLikeArea(likeAreaDto);
