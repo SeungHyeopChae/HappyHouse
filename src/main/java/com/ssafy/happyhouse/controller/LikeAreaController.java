@@ -30,11 +30,14 @@ public class LikeAreaController {
 	public String regist(LikeAreaDto likeAreaDto, Model model, HttpSession session) {
 		MemberDto memberDto = (MemberDto) session.getAttribute("userinfo");
 		try {
-			System.out.println(likeAreaDto);
-			LikeAreaDto like = likeAreaService.getLikeArea(memberDto.getUserId());
-			System.out.println(memberDto.getUserId());
+			LikeAreaDto tmp = likeAreaService.getLikeArea(memberDto.getUserId());
 			likeAreaDto.setUserid(memberDto.getUserId());
-			likeAreaService.registerLikeArea(likeAreaDto);
+			if(tmp == null) {			
+				likeAreaService.registerLikeArea(likeAreaDto);
+			}
+			else {
+				likeAreaService.modifyLikeArea(likeAreaDto);
+			}
 			return "index";
 		} catch (Exception e) {
 			e.printStackTrace();
