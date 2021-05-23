@@ -6,7 +6,7 @@
    <select id="getLikeArea" resultType="LikeAreaDto">
       select *
       from likearea 
-      where userid= #{userId}
+      where userid= #{userid}
    </select>
    
    <insert id="registerLikeArea" parameterType="LikeAreaDto">

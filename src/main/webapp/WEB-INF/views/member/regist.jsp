@@ -101,6 +101,7 @@
                             <h6>아이디 </h6>
                             <p class="text-warning"> *</p>
                             <input type="text"  id="userId" name="userId" placeholder="">
+                            <button type="button" class="btn btn-warning marginTop" onclick="javascript:check();">중복체크</button>
                         </div>
                         <div class="row marginTop"> 
                             <h6>비밀번호 </h6>
