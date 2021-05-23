@@ -31,6 +31,7 @@ public class NoticeController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String noticeList() {
+		
 		return "notice/notice";
 	}
 	
@@ -42,6 +43,7 @@ public class NoticeController {
 	@RequestMapping(value="/write", method = {RequestMethod.GET, RequestMethod.POST})
 	public String registerArticle(NoticeDto noticeDto, Model model, HttpSession session) {
 		MemberDto memberDto = (MemberDto) session.getAttribute("userinfo");
+		
 		if(memberDto != null) {
 			noticeDto.setUserId(memberDto.getUserId());
 			logger.debug(noticeDto.getSubject());

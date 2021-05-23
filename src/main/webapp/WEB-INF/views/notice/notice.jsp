@@ -2,6 +2,21 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="root" value="${pageContext.request.contextPath}" />
+<%
+boolean admin = false; // 관리자일 경우 true로
+boolean user = false; // 유저일 경우 true
+
+
+if(session.getAttribute("userinfo") != null && session.getAttribute("usercode") != null){
+	admin = true;
+} else if(session.getAttribute("userinfo") != null){
+	user = true;
+}; 
+
+pageContext.setAttribute("admin", admin);
+pageContext.setAttribute("user", user);
+	
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -73,7 +88,10 @@ function writeNotice(){
 								name="word" id="sword">
 								<button type="button" class="btn btn-primary"
 									onclick="javascript:searchNotice();">검색</button>
-								<button id="mvWriteBtn" type="button" class="btn btn-danger" onclick="javascript:writeNotice();">작성</button></td>
+									<c:if test="${admin }">
+									<button id="mvWriteBtn" type="button" class="btn btn-danger" onclick="javascript:writeNotice();">작성</button>
+									</c:if>
+								</td>
 						</tr>
 						<!-- <tr>
 							<td align="right"><select class="form-control" name="spp"
@@ -116,9 +134,12 @@ function writeNotice(){
 								<td>${article.content }</td>
 								<td>${article.regtime }</td>
 								<td>
+								<c:if test="${admin }">
 									<a href="${root}/notice/modify?articleNo=${article.articleNo} " class="btn btn-primary btn-sm " role="button" aria-disabled="true" >수정</a>
 									<a href="${root}/notice/delete?articleNo=${article.articleNo}" class="btn btn-primary btn-sm " role="button" aria-disabled="true" >삭제</a>
+								</c:if>
 								</td>
+								
 							</tr>
 
 						</c:forEach>

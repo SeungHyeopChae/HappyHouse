@@ -38,6 +38,12 @@ public class MemberController {
 //			System.out.println(memberDto.toString());
 			if(memberDto != null) {
 				session.setAttribute("userinfo", memberDto);
+				session.setAttribute("usercode", memberDto.getCode());
+//				System.out.println(session.getAttribute("usercode"));
+//				if(memberService.getMember(map.get("userid")).getCode() == "admin") {
+//					session.setAttribute("adcheck", "1");
+//				}
+//				System.out.println(session.getAttribute("usercode"));
 //				System.out.println(memberDto.getUserPwd());
 				Cookie cookie = new Cookie("ssafy_id", memberDto.getUserId());
 				cookie.setPath("/");
