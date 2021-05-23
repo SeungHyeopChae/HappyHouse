@@ -186,7 +186,7 @@ $(document).ready(function() {
 							<select class="form-control" name="gugun" id="gu">
 								<c:if test="${donglist eq null}">
 									<option value="all">시/구/군</option>
-									<c:forEach var="guguns" items="${gugunlist}" varStatus="status">
+									<c:forEach var="guguns" items="${gugunlist}" varStatus="status"> 
 										<option value="${guguns.gugun}">${guguns.gugun}</option>
 									</c:forEach>
 								</c:if>
