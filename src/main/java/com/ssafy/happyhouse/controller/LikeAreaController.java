@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.ssafy.happyhouse.model.LikeAreaDto;
 import com.ssafy.happyhouse.model.MemberDto;
 import com.ssafy.happyhouse.model.service.LikeAreaService;
+import com.ssafy.happyhouse.model.service.WordService;
 
 @Controller
 @RequestMapping("/likearea")
@@ -21,8 +22,11 @@ public class LikeAreaController {
 	@Autowired
 	private LikeAreaService likeAreaService;
 	
+	
+	
 	@RequestMapping(value = "/regist", method = RequestMethod.GET)
 	public String likearea() {
+		
 		return "LikeArea";
 	}
 	
