@@ -2,10 +2,22 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="root" value="${pageContext.request.contextPath}"/>
-<c:if test="${userinfo == null}">
-	<c:redirect url="/"/>
-</c:if>
-<c:if test="${userinfo != null}">
+<%
+boolean admin = false; // 관리자일 경우 true로
+boolean user = false; // 유저일 경우 true
+
+
+if(session.getAttribute("userinfo") != null && session.getAttribute("usercode") != null){
+	admin = true;
+} else if(session.getAttribute("userinfo") != null){
+	user = true;
+}; 
+
+pageContext.setAttribute("admin", admin);
+pageContext.setAttribute("user", user);
+	
+%>
+<c:if test="${admin }">
 <!DOCTYPE html>
 <html lang="ko">
 <head>

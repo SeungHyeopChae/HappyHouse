@@ -1,6 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%
+boolean admin = false; // 관리자일 경우 true로
+boolean user = false; // 유저일 경우 true
+
+
+if(session.getAttribute("userinfo") != null && session.getAttribute("usercode") != null){
+	admin = true;
+} else if(session.getAttribute("userinfo") != null){
+	user = true;
+}; 
+
+pageContext.setAttribute("admin", admin);
+pageContext.setAttribute("user", user);
+	
+%>
 <c:set var="root" value="${pageContext.request.contextPath}"/>    
 <!-- 로그인 안했을 경우 index page로 이동 -->
 <c:if test="${userinfo eq null}">
@@ -9,8 +25,10 @@
 	location.href = "${root}";
 	</script>
 </c:if>
+
+
 <!-- 로그인 했을 경우 아래 출력 -->
-<c:if test="${userinfo ne null}">
+<c:if test="${admin}">
 <!DOCTYPE html>
 <html lang="ko">
 <head>

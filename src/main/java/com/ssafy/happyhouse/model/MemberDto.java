@@ -18,15 +18,17 @@ public class MemberDto {
 	private String address;
 	@ApiModelProperty(value = "가입일")
 	private String joindate;
-	@ApiModelProperty(value = "동코드")
-	private String dongcode;
+	@ApiModelProperty(value = "회원 권한")
+	private String code;
 	
-	public String getDongcode() {
-		return dongcode;
+	
+
+	public String getCode() {
+		return code;
 	}
 
-	public void setDongcode(String dongcode) {
-		this.dongcode = dongcode;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	public String getUserId() {
@@ -80,7 +82,7 @@ public class MemberDto {
 	@Override
 	public String toString() {
 		return "MemberDto [userId=" + userId + ", userName=" + userName + ", userPwd=" + userPwd + ", email=" + email
-				+ ", address=" + address + ", joindate=" + joindate + ", dongcode=" + dongcode + "]";
+				+ ", address=" + address + ", joindate=" + joindate + ", code=" + code + "]";
 	}
 
 }
