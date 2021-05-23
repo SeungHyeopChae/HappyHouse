@@ -5,6 +5,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ssafy.happyhouse.model.MemberDto;
 import com.ssafy.happyhouse.model.mapper.MemberMapper;
@@ -50,14 +51,13 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
+	@Transactional
 	public boolean modifyMember(MemberDto memberDto) {
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		String securePwd = encoder.encode(memberDto.getUserPwd());
-		memberDto.setUserPwd(securePwd);
 		return memberMapper.modifyMember(memberDto) == 1;
 	}
 
 	@Override
+	@Transactional
 	public boolean deleteMember(String userId) {
 		return memberMapper.deleteMember(userId) == 1;
 	}
