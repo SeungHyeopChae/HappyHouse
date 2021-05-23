@@ -64,7 +64,7 @@
 			alert("비밀번호 입력!!!");
 			return;
 		} else {
-			alert("로그인?")
+			
 			document.getElementById("loginform").action = "${root}/member/login";
 			document.getElementById("loginform").submit();
 		}

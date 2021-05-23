@@ -104,15 +104,17 @@
 																id="userpwd" name="userpwd"> <i
 																class="fa fa-lock form-control-feedback"></i>
 														</div>
-														<button type="submit" class="btn btn-gray btn-sm"
+														<button type="submit" id="loginbtn" class="btn btn-gray btn-sm mr-6"
 															onclick="javascript:login();">로 그 인</button>
+														<button class="btn btn-default btn-sm" onclick = "location.href='${root }/member/forget'"> 비밀번호 찾기 </button>
+															
 														<div class="form-group form-check" align="right">
 															<label class="form-check-label"> <input
 																class="form-check-input" type="checkbox" id="idsave"
 																name="idsave" value="saveok" ${idck}> 아이디저장
 															</label>
 														</div>
-
+<%-- 
 														<ul class='pagination'>
 															<!--
 														<li>
@@ -121,7 +123,7 @@
 														-->
 															<li><a href="${root}/member/forget"
 																class="btn btn-default btn-sm">비밀번호 찾기</a></li>
-														</ul>
+														</ul> --%>
 
 													</form>
 												</li>
