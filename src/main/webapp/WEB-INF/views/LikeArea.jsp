@@ -187,7 +187,7 @@ $(document).ready(function() {
 								<c:if test="${donglist eq null}">
 									<option value="all">시/구/군</option>
 									<c:forEach var="guguns" items="${gugunlist}" varStatus="status"> 
-										<option value="${guguns.gugun}">${guguns.gugun}</option>
+										<option value="${guguns.gugun}">${guguns.gugun}</option>  
 									</c:forEach>
 								</c:if>
 								<c:if test="${donglist ne null }">
