@@ -53,6 +53,9 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	@Transactional
 	public boolean modifyMember(MemberDto memberDto) {
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		String securePwd = encoder.encode(memberDto.getUserPwd());
+		memberDto.setUserPwd(securePwd);
 		return memberMapper.modifyMember(memberDto) == 1;
 	}
 
