@@ -1836,7 +1836,7 @@ pre code {
 }
 
 .form-control:focus {
-  color: #ffffff;
+  color: ##495057;
   background-color: #fff;
   border-color: #80bdff;
   outline: 0;
