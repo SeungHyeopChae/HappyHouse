@@ -69,17 +69,13 @@ public class NoticeController {
 	public String list(@RequestParam Map<String, String> map, Model model) {
 		String spp = map.get("spp");
 		map.put("spp", spp != null ? spp : "10");//sizePerPage
-		try {
+		
 			List<NoticeDto> list = noticeService.listArticle(map);
 			PageNavigation pageNavigation = noticeService.makePageNavigation(map);
 			model.addAttribute("articles", list);
 			model.addAttribute("navigation", pageNavigation);
 			return "notice/notice";
-		} catch (Exception e) {
-			e.printStackTrace();
-			model.addAttribute("msg", "글목록을 얻어오는 중 문제가 발생했습니다.");
-			return "error/404";
-		}
+		
 	}
 	
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)

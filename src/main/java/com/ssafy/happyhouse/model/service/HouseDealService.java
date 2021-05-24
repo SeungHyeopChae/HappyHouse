@@ -1,11 +1,16 @@
 package com.ssafy.happyhouse.model.service;
 
 import java.util.List;
+import java.util.Map;
+
 import com.ssafy.happyhouse.model.HouseDealDto;
+import com.ssafy.happyhouse.util.PageNavigation;
 
 public interface HouseDealService {
 
-	List<HouseDealDto> listhouse(String key);
+//	public List<HouseDealDto> listhouse(String code);
 	List<HouseDealDto> listlike(String key);
 	List<HouseDealDto> listall();
+	PageNavigation makePageNavigation(Map<String, String> map);
+	public List<HouseDealDto> listhouse(Map<String, String> map);
 }

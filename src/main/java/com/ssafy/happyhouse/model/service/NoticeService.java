@@ -22,4 +22,5 @@ public interface NoticeService {
 	
 	boolean deleteArticle(int articleNo);
 
+
 }

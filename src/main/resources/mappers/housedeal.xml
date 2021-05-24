@@ -3,13 +3,14 @@
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
    
 <mapper namespace="com.ssafy.happyhouse.model.mapper.HouseDealMapper">
-   <select id="listhouse" resultType="HouseDealDto">
+
+   <select id="listhouse" parameterType="map" resultType="HouseDealDto">
       select *
       from housedeal 
       where dong= #{key}
    </select>
    
-   <select id="listlike" resultType="HouseDealDto">
+   <select id="listlike" parameterType="String" resultType="HouseDealDto">
       select *
       from housedeal 
       where dong = (select dong from LikeArea where userid=#{key})
@@ -20,5 +21,9 @@
       from housedeal
    </select>
    
+   <select id="getTotalCount" parameterType="map" resultType="int">
+   		select count(no)
+   		from housedeal
+   </select>
    
 </mapper>

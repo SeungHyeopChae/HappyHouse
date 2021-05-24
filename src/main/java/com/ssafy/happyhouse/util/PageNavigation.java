@@ -101,7 +101,7 @@ public class PageNavigation {
 		buffer.append("				<a href=\"#\" class=\"page-link\">다음</a> \n");
 		buffer.append("			</li> \n");
 		buffer.append("			<li class=\"page-item\" data-pg=\"" + totalPageCount + "\"> \n");
-		buffer.append("				<a href=\"#\" class=\"page-link\">마지막</a> \n");
+		buffer.append("				<a href=\"#\" class=\"page-link\">끝</a> \n");
 		buffer.append("			</li> \n");
 		buffer.append("		</ul> \n");
 		this.navigator = buffer.toString();

@@ -29,9 +29,11 @@ public class NoticeServiceImpl implements NoticeService{
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("key", map.get("key") == null ? "" : map.get("key"));
 		param.put("word", map.get("word") == null ? "" : map.get("word"));
-		int currentPage = Integer.parseInt(map.get("pg"));
+		int currentPage = Integer.parseInt(map.get("pg") == null ? "1" : map.get("pg"));
 		int sizePerPage = Integer.parseInt(map.get("spp"));
+		System.out.println("pg : " + currentPage + " " + "spp : " + sizePerPage);
 		int start = (currentPage - 1) * sizePerPage;
+		System.out.println("start : " + start);
 		param.put("start", start);
 		param.put("spp", sizePerPage);
 		return noticeMapper.listArticle(param);
@@ -55,12 +57,13 @@ public class NoticeServiceImpl implements NoticeService{
 	@Override
 	public PageNavigation makePageNavigation(Map<String, String> map) {
 		int naviSize = 10;
-		int currentPage = Integer.parseInt(map.get("pg"));
+		int currentPage = Integer.parseInt(map.get("pg") == null ? "1" : map.get("pg"));	
 		int sizePerPage = Integer.parseInt(map.get("spp"));
 		PageNavigation pageNavigation = new PageNavigation();
 		pageNavigation.setCurrentPage(currentPage);
 		pageNavigation.setNaviSize(naviSize);
 		int totalCount = noticeMapper.getTotalCount(map);
+		System.out.println(totalCount);
 		pageNavigation.setTotalCount(totalCount);
 		int totalPageCount = (totalCount - 1) / sizePerPage + 1;
 		pageNavigation.setTotalPageCount(totalPageCount);
@@ -71,7 +74,5 @@ public class NoticeServiceImpl implements NoticeService{
 		pageNavigation.makeNavigator();
 		return pageNavigation;
 	}
-	
-	
 
 }

@@ -18,4 +18,5 @@ public interface NoticeMapper {
 	int modifyArticle(NoticeDto noticeDto);
 	
 	int deleteArticle(int articleNo);
+
 }

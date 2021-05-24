@@ -86,6 +86,13 @@
 								</div>
 								<hr>
 							</c:forEach>
+							<table>
+								<tr>
+									<td>
+									${navigation.navigator}
+									</td>
+								</tr>
+							</table>
 						</div>
 					</div>
 
