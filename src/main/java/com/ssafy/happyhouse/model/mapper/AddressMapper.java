@@ -8,5 +8,6 @@ public interface AddressMapper {
 
 	List<AddressDto> getGugunList(String sicode);
 	List<AddressDto> getDongList(String guguncode);
+	AddressDto getLatLng(String dong);
 
 }

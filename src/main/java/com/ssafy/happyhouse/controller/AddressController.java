@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ssafy.happyhouse.model.AddressDto;
+import com.ssafy.happyhouse.model.HouseDealDto;
 import com.ssafy.happyhouse.model.service.AddressService;
 
 @Controller
@@ -35,5 +36,6 @@ public class AddressController {
 		List<AddressDto> donglist = addressService.getDongList(guguncode);
 		return donglist;
 	}
+	
 
 }

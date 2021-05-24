@@ -24,16 +24,45 @@
 <script defer
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdgUFP7WNqnjlmJ0OS__3Nf9Et7aOoxnI&callback=initMap&libraries=&v=weekly"></script>
 <script>
-	let map;
-	function initMap() {
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+let map;
+var nlat;
+var nlng;
+var ndong;
+<c:if test="${latlng ne null}">
+	nlat = "${latlng.lat}";
+	nlng = "${latlng.lng}";
+	ndong = "${latlng.dong}";
+</c:if>
+console.log(nlat);
+console.log(nlng);
+console.log(ndong);
+
+
+function initMap() {
 		map = new google.maps.Map(document.getElementById("map"), {
 			center : {
-				lat : 37.5013068,
-				lng : 127.037471
-			},
-			zoom : 17
-		});
-	}
+				lat : Number(nlat),
+				lng : Number(nlng)
+			},  
+			zoom : 15
+		})
+		console.log("아작스진입");
+		$.ajax({
+			url : "${root}/house/list",
+        	type : "POST",     
+        	data : {
+        		"dong" : ndong
+        	},
+        	success : function (data) {
+            	for (let i = 0; i < data.length; i++) {
+            		console.log("반복문진입");
+              		var tmp = { lat: Number(data[i].lat), lng: Number(data[i].lng) }
+              		var marker = new google.maps.Marker({ position: tmp, map: map, title: data[i].AptName });
+            	}
+        	}
+    	})
+}
 </script>
 <style>
 .banner {
@@ -80,9 +109,9 @@
 								<!-- header top dropdowns start -->
 								<!-- ================ -->
 								<div class="header-top-dropdown text-right">
-								
-								
-								<c:if test="${userinfo eq null}">
+
+
+									<c:if test="${userinfo eq null}">
 										<div class="btn-group">
 											<a class="btn btn-default btn-sm"
 												onclick="javascript:moveJoin();"> <i
@@ -145,9 +174,9 @@
 										<%@ include file="member/confirm.jsp"%>
 
 									</c:if>
-								
 
-									
+
+
 								</div>
 								<!--  header top dropdowns end -->
 							</div>
@@ -226,7 +255,7 @@
 											</div>
 										</div>
 										<!-- header dropdown buttons end -->
-										
+
 										<c:if test="${userinfo eq null}">
 
 											<button class="navbar-toggler" type="button"
@@ -289,15 +318,15 @@
 													</li>
 													<li class="nav-item dropdown mega-menu mega-menu--wide">
 														<!-- <a href="foodBestList.do?id=n" class="nav-link dropdown-toggle" id="second-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">영양 정보</a> -->
-														<a class="nav-link"
-														id="second-dropdown" aria-haspopup="true"
-														aria-expanded="false" onclick="javascript:searchlike();">관심지역 둘러보기</a>
+														<a class="nav-link" id="second-dropdown"
+														aria-haspopup="true" aria-expanded="false"
+														onclick="javascript:searchlike();">관심지역 둘러보기</a>
 													</li>
 												</ul>
 												<!-- main-menu end -->
 											</div>
 										</c:if>
-										
+
 									</nav>
 								</div>
 							</div>
@@ -354,7 +383,7 @@
 				</aside>
 			</section>
 
-			
+
 			<!--지도 부분-->
 			<div class="container justify-content-right"
 				style="margin-top: 50px;">

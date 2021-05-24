@@ -25,4 +25,9 @@ public class AddressServiceImpl implements AddressService{
 		return addressMapper.getDongList(guguncode);
 	}
 
+	@Override
+	public AddressDto getLatLng(String dong) {
+		return addressMapper.getLatLng(dong);
+	}
+
 }
