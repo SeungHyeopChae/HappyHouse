@@ -8,7 +8,7 @@ import com.ssafy.happyhouse.model.HouseDealDto;
 
 public interface HouseDealMapper {
 	
-	List<HouseDealDto> listhouse(Map<String, Object> param);
+	List<HouseDealDto> listhouse(String code);
 	
 	List<HouseDealDto> listlike(String key);
 	

@@ -2,12 +2,13 @@ package com.ssafy.happyhouse.model;
 
 public class HouseInfoDto {
 	private int hNo;
-	private String dongcode;
-	private String aptName;
+	private String dong;
+	private String AptName;
 	private String code;
+	private String buildYear;
 	private String jibun;
 	private String lat;
-	private String ing;
+	private String lng;
 	
 	public int gethNo() {
 		return hNo;
@@ -15,23 +16,29 @@ public class HouseInfoDto {
 	public void sethNo(int hNo) {
 		this.hNo = hNo;
 	}
-	public String getDongcode() {
-		return dongcode;
+	public String getDong() {
+		return dong;
 	}
-	public void setDongcode(String dongcode) {
-		this.dongcode = dongcode;
+	public void setDong(String dong) {
+		this.dong = dong;
 	}
 	public String getAptName() {
-		return aptName;
+		return AptName;
 	}
 	public void setAptName(String aptName) {
-		this.aptName = aptName;
+		AptName = aptName;
 	}
 	public String getCode() {
 		return code;
 	}
 	public void setCode(String code) {
 		this.code = code;
+	}
+	public String getBuildYear() {
+		return buildYear;
+	}
+	public void setBuildYear(String buildYear) {
+		this.buildYear = buildYear;
 	}
 	public String getJibun() {
 		return jibun;
@@ -45,10 +52,13 @@ public class HouseInfoDto {
 	public void setLat(String lat) {
 		this.lat = lat;
 	}
-	public String getIng() {
-		return ing;
+	public String getLng() {
+		return lng;
 	}
-	public void setIng(String ing) {
-		this.ing = ing;
+	public void setLng(String lng) {
+		this.lng = lng;
 	}
+	
+	
+	
 }

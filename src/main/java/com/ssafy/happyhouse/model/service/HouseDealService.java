@@ -8,9 +8,9 @@ import com.ssafy.happyhouse.util.PageNavigation;
 
 public interface HouseDealService {
 
-//	public List<HouseDealDto> listhouse(String code);
+	public List<HouseDealDto> listhouse(String code);
 	List<HouseDealDto> listlike(String key);
 	List<HouseDealDto> listall();
 	PageNavigation makePageNavigation(Map<String, String> map);
-	public List<HouseDealDto> listhouse(Map<String, String> map);
+//	public List<HouseDealDto> listhouse(Map<String, String> map);
 }

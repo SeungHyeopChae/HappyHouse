@@ -17,4 +17,13 @@
       group by dong
    </select>
    
+   <select id="getLatLng" resultType="AddressDto">
+      select lat, lng, dong
+      from baseaddress 
+      where dong= #{dong} 
+      group by dong
+   </select>
+   
+   
+   
 </mapper>

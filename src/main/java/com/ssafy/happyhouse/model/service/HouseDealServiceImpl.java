@@ -21,17 +21,17 @@ public class HouseDealServiceImpl implements HouseDealService {
 	private HouseDealMapper houseDealMapper;
 
 	@Override
-	public List<HouseDealDto> listhouse(Map<String, String> map) {
-		Map<String, Object> param = new HashMap<String, Object>();
-		param.put("key", map.get("key") == null ? "" : map.get("key"));
-		param.put("word", map.get("word") == null ? "" : map.get("word"));
-		int currentPage = Integer.parseInt(map.get("pg"));
-		int sizePerPage = Integer.parseInt(map.get("spp"));
-		int start = (currentPage - 1) * sizePerPage;
-		param.put("start", start);
-		param.put("spp", sizePerPage);
+	public List<HouseDealDto> listhouse(String code) {
+//		Map<String, Object> param = new HashMap<String, Object>();
+//		param.put("key", map.get("key") == null ? "" : map.get("key"));
+//		param.put("word", map.get("word") == null ? "" : map.get("word"));
+//		int currentPage = Integer.parseInt(map.get("pg"));
+//		int sizePerPage = Integer.parseInt(map.get("spp"));
+//		int start = (currentPage - 1) * sizePerPage;
+//		param.put("start", start);
+//		param.put("spp", sizePerPage);
 		
-		return houseDealMapper.listhouse(param);
+		return houseDealMapper.listhouse(code);
 
 	}
 
