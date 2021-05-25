@@ -25,7 +25,7 @@ let map;
 var nlat;
 var nlng;
 <c:if test="${infos ne null}">
-	nlat = "${infos.lat}";
+	nlat = "${infos.lat}"; 
 	nlng = "${infos.lng}";
 </c:if>
 console.log(nlat);
