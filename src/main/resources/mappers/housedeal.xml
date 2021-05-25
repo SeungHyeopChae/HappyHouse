@@ -21,9 +21,17 @@
       from housedeal
    </select>
    
+
    <select id="getTotalCount" parameterType="map" resultType="int">
    		select count(no)
    		from housedeal
    </select>
    
+
+   <select id="detail" resultType="HouseDealDto">
+      select *
+      from housedeal
+      where no= #{no}
+   </select>
+
 </mapper>

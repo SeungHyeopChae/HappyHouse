@@ -3,6 +3,7 @@ package com.ssafy.happyhouse.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.ssafy.happyhouse.model.AddressDto;
 import com.ssafy.happyhouse.model.HouseDealDto;
 import com.ssafy.happyhouse.model.HouseInfoDto;
+import com.ssafy.happyhouse.model.MemberDto;
+import com.ssafy.happyhouse.model.NoticeDto;
 import com.ssafy.happyhouse.model.service.AddressService;
 import com.ssafy.happyhouse.model.service.HouseDealService;
 import com.ssafy.happyhouse.model.service.HouseInfoService;
@@ -66,5 +69,24 @@ public class HouseDealController {
 		List<HouseInfoDto> list = houseInfoService.getList(dong);
 		return list;
 	}
+	
+	@RequestMapping(value = "/detail", method = RequestMethod.GET)
+	public String detail(@RequestParam("no") int no, Model model) {
+			try {
+				System.out.println(no);
+				HouseDealDto houseDetail = houseDealService.detail(no);
+				HouseInfoDto houseInfo = houseInfoService.getDetail(houseDetail.getAptName(),houseDetail.getBuildYear());
+				model.addAttribute("details", houseDetail);
+				model.addAttribute("infos", houseInfo);
+				return "house";
+			} catch(Exception e) {
+				e.printStackTrace();
+				model.addAttribute("msg", "상세정보를 얻어오는 중 문제가 발생했습니다.");
+				return "error/404";
+			}
+	}
+	
+	
+	
 
 }

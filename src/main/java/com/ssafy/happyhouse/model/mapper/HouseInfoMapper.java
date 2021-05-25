@@ -8,5 +8,5 @@ import com.ssafy.happyhouse.model.HouseInfoDto;
 public interface HouseInfoMapper {
 	
 	List<HouseInfoDto> getList(String dong);
-
+	HouseInfoDto getDetail(String aptName, String buildYear);
 }

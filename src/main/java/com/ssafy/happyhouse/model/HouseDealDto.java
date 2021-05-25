@@ -7,9 +7,9 @@ import io.swagger.annotations.ApiModelProperty;
 public class HouseDealDto {
 
 	@ApiModelProperty(value = "번호", example = "111")
-	private int hNo;
-	@ApiModelProperty(value = "돟코드")
-	private String dongcode;
+	private int no;
+	@ApiModelProperty(value = "돟")
+	private String dong;
 	@ApiModelProperty(value = "아파트 이름")
 	private String aptName;
 	@ApiModelProperty(value = "코드")
@@ -28,37 +28,28 @@ public class HouseDealDto {
 	private String area;
 	@ApiModelProperty(value = "층수")
 	private String floor;
+	@ApiModelProperty(value = "지번")
+	private String jibun;
 	
 	
-	public String getDongcode() {
-		return dongcode;
+	
+	public int getNo() {
+		return no;
 	}
-	public void setDongcode(String dongcode) {
-		this.dongcode = dongcode;
+	public void setNo(int no) {
+		this.no = no;
 	}
-	public String getDealYear() {
-		return dealYear;
+	public String getDong() {
+		return dong;
 	}
-	public void setDealYear(String dealYear) {
-		this.dealYear = dealYear;
+	public void setDong(String dong) {
+		this.dong = dong;
 	}
 	public String getAptName() {
 		return aptName;
 	}
 	public void setAptName(String aptName) {
 		this.aptName = aptName;
-	}
-	public int gethNo() {
-		return hNo;
-	}
-	public void sethNo(int hNo) {
-		this.hNo = hNo;
-	}
-	public String getDong() {
-		return dongcode;
-	}
-	public void setDong(String dongcode) {
-		this.dongcode = dongcode;
 	}
 	public String getCode() {
 		return code;
@@ -77,6 +68,12 @@ public class HouseDealDto {
 	}
 	public void setBuildYear(String buildYear) {
 		this.buildYear = buildYear;
+	}
+	public String getDealYear() {
+		return dealYear;
+	}
+	public void setDealYear(String dealYear) {
+		this.dealYear = dealYear;
 	}
 	public String getDealMonth() {
 		return dealMonth;
@@ -102,16 +99,14 @@ public class HouseDealDto {
 	public void setFloor(String floor) {
 		this.floor = floor;
 	}
-	@Override
-	public String toString() {
-		return "HouseDealDto [hNo=" + hNo + ", dongcode=" + dongcode + ", aptName=" + aptName + ", code=" + code
-				+ ", dealAmount=" + dealAmount + ", buildYear=" + buildYear + ", dealYear=" + dealYear + ", dealMonth="
-				+ dealMonth + ", dealDay=" + dealDay + ", area=" + area + ", floor=" + floor + "]";
+	public String getJibun() {
+		return jibun;
+	}
+	public void setJibun(String jibun) {
+		this.jibun = jibun;
 	}
 	
 	
-	
-
 	
 
 }

@@ -5,7 +5,6 @@ import java.util.Map;
 
 import com.ssafy.happyhouse.model.HouseDealDto;
 
-
 public interface HouseDealMapper {
 	
 	List<HouseDealDto> listhouse(String code);
@@ -15,5 +14,7 @@ public interface HouseDealMapper {
 	List<HouseDealDto> listall();
 	
 	int getTotalCount(Map<String, String> map);
+	
+	HouseDealDto detail(int no);
 
 }

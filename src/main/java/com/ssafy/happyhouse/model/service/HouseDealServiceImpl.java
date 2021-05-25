@@ -1,7 +1,6 @@
 package com.ssafy.happyhouse.model.service;
 
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -46,25 +45,15 @@ public class HouseDealServiceImpl implements HouseDealService {
 		return houseDealMapper.listall();
 	}
 
+	public HouseDealDto detail(int no) {
+		return houseDealMapper.detail(no);
+
+	}
+
 	@Override
 	public PageNavigation makePageNavigation(Map<String, String> map) {
-		
-		int naviSize = 10;
-		int currentPage = Integer.parseInt(map.get("pg") == null ? "1" : map.get("pg"));
-		int sizePerPage = Integer.parseInt(map.get("spp"));
-		PageNavigation pageNavigation = new PageNavigation();
-		pageNavigation.setCurrentPage(currentPage);
-		pageNavigation.setNaviSize(naviSize);
-		int totalCount = houseDealMapper.getTotalCount(map);
-		pageNavigation.setTotalCount(totalCount);
-		int totalPageCount = (totalCount - 1) / sizePerPage + 1;
-		pageNavigation.setTotalPageCount(totalPageCount);
-		boolean startRange = currentPage <= naviSize;
-		pageNavigation.setStartRange(startRange);
-		boolean endRange = (totalPageCount - 1) / naviSize * naviSize < currentPage;
-		pageNavigation.setEndRange(endRange);
-		pageNavigation.makeNavigator();
-		return pageNavigation;
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	
