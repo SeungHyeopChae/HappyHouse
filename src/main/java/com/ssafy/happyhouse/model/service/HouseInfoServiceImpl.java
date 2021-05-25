@@ -18,6 +18,11 @@ public class HouseInfoServiceImpl implements HouseInfoService{
 	public List<HouseInfoDto> getList(String dong) {
 		return houseInfoMapper.getList(dong);
 	}
+
+	@Override
+	public HouseInfoDto getDetail(String aptName, String buildYear) {
+		return houseInfoMapper.getDetail(aptName, buildYear);
+	}
 	
 
 }

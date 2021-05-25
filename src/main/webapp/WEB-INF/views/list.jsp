@@ -47,6 +47,7 @@ function initMap() {
 			},  
 			zoom : 15
 		})
+		var myIcon = new google.maps.MarkerImage("${root}/img/drug.png", null, null, null, new google.maps.Size(50,50));
 		console.log("아작스진입");
 		$.ajax({
 			url : "${root}/house/list",
@@ -58,7 +59,7 @@ function initMap() {
             	for (let i = 0; i < data.length; i++) {
             		console.log("반복문진입");
               		var tmp = { lat: Number(data[i].lat), lng: Number(data[i].lng) }
-              		var marker = new google.maps.Marker({ position: tmp, map: map, title: data[i].AptName });
+              		var marker = new google.maps.Marker({ position: tmp, icon: myIcon, map: map, title: data[i].AptName });
             	}
         	}
     	})
@@ -365,12 +366,12 @@ function initMap() {
 							<c:forEach var="list" items="${houseList}" varStatus="vs">
 								<div class="media margin-clear">
 									<div class="media-body">
-										<h4>${list.aptName}</h4>
+										<h4><a href="${root}/house/detail?no=${list.no}">${list.aptName}</a></h4>
 										<h6 class="media-heading" id="deal">거래금액
 											:${list.dealAmount}만원</h6>
 										<h6 class="media-heading" id="deal">면적: ${list.area}</h6>
 										<p class="small margin-clear">
-											<i class="fa fa-calendar pr-10"></i>${list.buildYear}
+											<i class="fa fa-calendar pr-10"></i>${list.dealYear}
 											(${list.dealMonth}) (${list.dealDay})
 										</p>
 									</div>

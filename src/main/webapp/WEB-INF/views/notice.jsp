@@ -24,7 +24,7 @@
     $(document).ready(function() {
 		
 		$('#mvWriteBtn').focusin(function() {
-			$(location).attr("href", "${root}/article/write");
+			$(location).attr("href", "${root}/notice/write");
 		});
 		
 		$("#searchBtn").click(function() {
@@ -32,12 +32,12 @@
 			if($("#sword").val() == "") {
 				alert("모든 목록 조회!!");
 			} 
-			$("#searchform").attr("action", "${root}/article/list").submit();
+			$("#searchform").attr("action", "${root}/notice/list").submit();
 		});
 		
 		$(".page-item").click(function() {
 			$("#pg").val(($(this).attr("data-pg")));
-			$("#pageform").attr("action", "${root}/article/list").submit();
+			$("#pageform").attr("action", "${root}/notice/list").submit();
 		});
 		
 	});

@@ -32,6 +32,11 @@ public class HouseDealServiceImpl implements HouseDealService {
 	public List<HouseDealDto> listall() {
 		return houseDealMapper.listall();
 	}
+
+	@Override
+	public HouseDealDto detail(int no) {
+		return houseDealMapper.detail(no);
+	}
 	
 	
 

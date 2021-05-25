@@ -9,5 +9,6 @@ public interface HouseDealMapper {
 	List<HouseDealDto> listhouse(String key);
 	List<HouseDealDto> listlike(String key);
 	List<HouseDealDto> listall();
+	HouseDealDto detail(int no);
 
 }

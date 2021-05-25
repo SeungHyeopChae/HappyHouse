@@ -20,5 +20,9 @@
       from housedeal
    </select>
    
-   
+   <select id="detail" resultType="HouseDealDto">
+      select *
+      from housedeal
+      where no= #{no}
+   </select>
 </mapper>
