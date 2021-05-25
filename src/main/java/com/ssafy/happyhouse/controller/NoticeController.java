@@ -67,7 +67,10 @@ public class NoticeController {
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(@RequestParam Map<String, String> map, Model model) {
+		String pg = map.get("pg");
 		String spp = map.get("spp");
+		
+		System.out.println("router - > pg : " + pg + "spp : " + spp);
 		map.put("spp", spp != null ? spp : "10");//sizePerPage
 		
 			List<NoticeDto> list = noticeService.listArticle(map);

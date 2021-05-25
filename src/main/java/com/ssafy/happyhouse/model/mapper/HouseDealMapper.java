@@ -4,14 +4,16 @@ import java.util.List;
 import java.util.Map;
 
 import com.ssafy.happyhouse.model.HouseDealDto;
+import com.ssafy.happyhouse.model.NoticeDto;
 
 public interface HouseDealMapper {
 	
 	List<HouseDealDto> listhouse(String code);
+//	List<HouseDealDto> listhouse(Map<String, Object> param);
 	
 	List<HouseDealDto> listlike(String key);
 	
-	List<HouseDealDto> listall();
+	List<HouseDealDto> listall(Map<String, Object> param);
 	
 	int getTotalCount(Map<String, String> map);
 	

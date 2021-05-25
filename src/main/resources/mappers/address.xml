@@ -21,7 +21,6 @@
       select lat, lng, dong
       from baseaddress 
       where dong= #{dong} 
-      group by dong
    </select>
    
    

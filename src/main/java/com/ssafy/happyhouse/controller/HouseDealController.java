@@ -1,6 +1,7 @@
 package com.ssafy.happyhouse.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -21,6 +22,7 @@ import com.ssafy.happyhouse.model.NoticeDto;
 import com.ssafy.happyhouse.model.service.AddressService;
 import com.ssafy.happyhouse.model.service.HouseDealService;
 import com.ssafy.happyhouse.model.service.HouseInfoService;
+import com.ssafy.happyhouse.util.PageNavigation;
 
 
 @Controller
@@ -37,14 +39,21 @@ public class HouseDealController {
 	private HouseInfoService houseInfoService;
 	
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
-	public String search(@RequestParam String dong,  Model model)
+	public String search(@RequestParam Map<String, String> map, String dong,  Model model)
 	{
+		String pg = map.get("pg");
+		String spp = map.get("spp");
+		map.put("spp", spp != null ? spp : "10");
+		
 		String code = dong.split(",")[0];
+//		String code = map.get("dong").split(",")[0];
 		try {
 			List<HouseDealDto> list;
 			AddressDto latlng;
+			PageNavigation pageNavigation = houseDealService.makePageNavigation(map);
 			if(code.equals("all")) {
-				list = houseDealService.listall();
+				list = houseDealService.listall(map);
+				
 				latlng = new AddressDto();
 				latlng.setLat("37.5013068");
 				latlng.setLng("127.037471");
@@ -54,6 +63,7 @@ public class HouseDealController {
 				latlng = addressService.getLatLng(code);
 			}
 			model.addAttribute("houseList", list);
+			model.addAttribute("navigation", pageNavigation);
 			model.addAttribute("latlng", latlng);
 			return "list";
 		} catch (Exception e) {

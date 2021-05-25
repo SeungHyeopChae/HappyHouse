@@ -33,6 +33,7 @@ pageContext.setAttribute("user", user);
 <link href="${root}/css/typography-default.css" rel="stylesheet">
 <link href="${root}/css/bt.css" rel="stylesheet">
 <link href="${root}/css/light.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 
@@ -42,7 +43,7 @@ pageContext.setAttribute("user", user);
 			
 			$("#pageform").attr("action", "${root}/notice/list").submit();
 		});
-		console.log(click);
+		
 
 	});
 

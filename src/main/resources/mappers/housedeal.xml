@@ -19,6 +19,8 @@
    <select id="listall" resultType="HouseDealDto">
       select *
       from housedeal
+      order by no
+      limit #{start}, #{spp}
    </select>
    
 

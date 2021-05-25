@@ -19,8 +19,7 @@
 <link href="css/typography-default.css" rel="stylesheet">
 <link href="css/bt.css" rel="stylesheet">
 <link href="css/light.css" rel="stylesheet">
-
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script defer
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdgUFP7WNqnjlmJ0OS__3Nf9Et7aOoxnI&callback=initMap&libraries=&v=weekly"></script>
 <script>
@@ -34,6 +33,19 @@
 			zoom : 17
 		});
 	}
+</script>
+<script type="text/javascript">
+	$(document).ready(function() {
+
+		$(".page-item").click(function() {
+			
+			$("#pg").val(($(this).attr("data-pg")));
+			
+			$("#pageform").attr("action", "${root}/house/search?dong=all").submit();
+		});
+		
+
+	});
 </script>
 <style>
 .banner {
@@ -86,14 +98,15 @@
 								</div>
 								<hr>
 							</c:forEach>
-							<table>
+							
+						</div>
+						<table>
 								<tr>
 									<td>
 									${navigation.navigator}
 									</td>
 								</tr>
 							</table>
-						</div>
 					</div>
 
 				</aside>
