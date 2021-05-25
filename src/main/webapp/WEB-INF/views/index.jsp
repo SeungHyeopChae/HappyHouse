@@ -42,19 +42,18 @@
 
 
 
-<script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdgUFP7WNqnjlmJ0OS__3Nf9Et7aOoxnI&callback=initMap&libraries=&v=weekly"></script>
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+
+
+
 <script type="text/javascript">
-	let map;
-	function initMap() {
-		map = new google.maps.Map(document.getElementById("map"), {
-			center : {
-				lat : 37.5013068,
-				lng : 127.037471
-			},
-			zoom : 17
-		});
-	}
+	
 
 	function login() {
 		if (document.getElementById("userid").value == "") {
@@ -228,10 +227,9 @@
 		<!--지도 부분-->
 		<div class="container justify-content-center"
 			style="margin-top: 50px;">
-			<div id="map"
-				style="width: 800px; height: 400px; margin-left: auto; margin-right: auto;"></div>
+			
+				<div id="map" style="width:100%;height:350px;"></div>
 		</div>
-	</div>
 
 
 
@@ -284,5 +282,18 @@
 	<script src="${root}/js/slick.min.js"></script>
 	<script src="${root}/js/tem.js"></script>
 	<script src="${root}/js/custom.js"></script>
+	
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=25135de355b0c11f7e6e55d88edc8003"></script>
+	<script>
+		var mapContainer = document.getElementById('map');
+		var mapOption = { 
+        		center: new kakao.maps.LatLng(36.107238, 128.415105),
+        		level: 3 // 지도의 확대 레벨
+    	};
+
+		var map = new kakao.maps.Map(mapContainer, mapOption); 
+	</script>
+	
+	
 </body>
 </html>
