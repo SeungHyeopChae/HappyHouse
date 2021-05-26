@@ -226,11 +226,12 @@
                   <div class="header-first clearfix">
 
 
-                     <!-- logo -->
-                     <div id="logo" class="logo">
-                        <a href="${root}/index"><img id="logo_img"
-                           src="http://edu.ssafy.com/asset/images/header-logo.jpg"
-                           width='80' alt="The SSAFY"></a>
+							<!-- logo -->
+							<div id="logo" class="logo">
+								<img id="logo_img"
+									src="http://edu.ssafy.com/asset/images/header-logo.jpg"
+									width='80' alt="The SSAFY">
+
 
                   </div>
                </div>
@@ -250,11 +251,11 @@
                         <nav class="navbar navbar-expand-lg navbar-light p-0">
                            <div class="navbar-brand clearfix hidden-lg-up">
 
-                              <!-- logo -->
-                              <div id="logo-mobile" class="logo">
-                                 <a href="${root}/"><img id="logo-img-mobile"
-                                    src="http://edu.ssafy.com/asset/images/header-logo.jpg"
-                                    width='150' alt="The SSAFY"></a>
+										<!-- logo -->
+										<div id="logo-mobile" class="logo">
+											<img id="logo-img-mobile"
+												src="http://edu.ssafy.com/asset/images/header-logo.jpg"
+												width='150' alt="The SSAFY">
 
                               </div>
 

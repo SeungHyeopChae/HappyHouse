@@ -14,8 +14,8 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="./css/home.css">
-<script src="./js/homeevent.js"></script>
+<link rel="stylesheet" href="${root}/css/home.css">
+<script src="${root}/js/homeevent.js"></script>
 </head>
 <body>
 	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>

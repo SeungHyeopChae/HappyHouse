@@ -26,24 +26,6 @@
 <link href="${root}/css/light.css" rel="stylesheet">
 <title>Happy House 목록 조회</title>
 
-<meta name="description"
-	content="The Project a Bootstrap-based, Responsive HTML5 Template">
-<meta name="author" content="author">
-<!-- Mobile Meta -->
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="${root}/fontawesome/css/all.css" rel="stylesheet">
-<link href="${root}/css/style.css" rel="stylesheet">
-<link href="${root}/css/popup.css" rel="stylesheet">
-<link href="${root}/css/typography-default.css" rel="stylesheet">
-<link href="${root}/css/bt.css" rel="stylesheet">
-<link href="${root}/css/light.css" rel="stylesheet">
-
-
-
-
-
-
 
 
 <script
@@ -53,59 +35,7 @@
 
 
 
-<script type="text/javascript">
-	function login() {
-		if (document.getElementById("userid").value == "") {
-			alert("아이디 입력!!!");
-			return;
-		} else if (document.getElementById("userpwd").value == "") {
-			alert("비밀번호 입력!!!");
-			return;
-		} else {
 
-			document.getElementById("loginform").action = "${root}/member/login";
-			document.getElementById("loginform").submit();
-		}
-	}
-
-	function moveJoin() {
-		alert("회원가입")
-		document.location.href = "${root}/member/regist";
-	}
-	function search() {
-		document.getElementById("frm").action = "${root}/house/search?pg=1&key=dong&word="
-				+ $("#dong").val();
-		document.getElementById("frm").submit();
-
-	}
-
-	function searchlike() {
-		$
-				.ajax({
-					url : "${root}/likearea/search", //데이터베이스에 접근해 현재페이지로 결과를 뿌려줄 페이지
-					type : "POST",
-					data : {
-						"userid" : "${userinfo.userId}"
-					},
-					success : function(data) { //DB접근 후 가져온 데이터
-						if (data.dong == undefined) {
-							alert("관심지역을 등록해주세요.")
-						} else {
-							document.getElementById("frm").action = "${root}/house/search?pg=1&key=dong&word="
-									+ data.dong;
-							document.getElementById("frm").submit();
-						}
-					}
-
-				})
-
-	}
-
-	function deleteMember() {
-		alert("탈퇴하시겠습니까?");
-		document.location.href = "${root}/member/delete";
-	}
-</script>
 <script>
 	$(
 			function() {
@@ -460,37 +390,13 @@
 	<div class="container" style="margin-top: 50px;">
 		<div class="row">
 			<div class="col-md-4">
-				<img src="${root}/img/ssafy6.PNG">
+				<img src="${root}/img/sideAD.jpg">
 			</div>
 			<div class="col-md-4">
-				<h4>주택 관련 기사</h4>
-				<hr>
-				<ul style="list-style: none; padding-left: 0px; font-size: 15px;">
-					<li style="margin-bottom: 5px;">[인사] 신동아 건설</li>
-					<li style="margin-bottom: 5px;">12.16 대책 후 '매수.매도자 모두 일단 관망세'</li>
-					<li style="margin-bottom: 5px;">구미시, 낙동강 변 국가3산단에 민간공원 조성</li>
-					<li style="margin-bottom: 5px;">'은행'과 '보험사'의 주택담보대출 조건, 어떻게
-						다를까?</li>
-				</ul>
-				<hr>
+				<a href="http://www.moel.go.kr/index.do"><img src="${root}/img/Employ.PNG"></a>
 			</div>
 			<div class="col-md-4">
-				<h4>오늘의 뉴스</h4>
-				<hr>
-				<ul style="padding-left: 0px; font-size: 12px;">
-					<li style="margin-bottom: 5px;"><a class="text text-primary">KB국민은행,
-							‘디지털헌금바구니’ 출시</a></li>
-					<li style="margin-bottom: 5px;"><a class="text text-primary">존슨콘트롤즈,
-							OpenBlue 공개 “135년 쌓아온 빌딩 전문성과 최첨단 기술 결합”</a></li>
-					<li style="margin-bottom: 5px;"><a class="text text-primary">산업통상자원부,
-							업종별 비대면·온라인 수출 기반 본격 가동</a></li>
-					<li style="margin-bottom: 5px;"><a class="text text-primary">
-							장상인 대표, 제6회 INAK사회공헌대상 프레스클럽부문 ‘시민봉사대상’ 수상?</a></li>
-					<li style="margin-bottom: 5px;"><a class="text text-primary">삼성전자,
-							한샘과 공동사업 강화 위한 업무협약 체결</a></li>
-
-				</ul>
-				<hr>
+				<a href="https://www.ssafy.com/ksp/jsp/swp/swpMain.jsp"><img src="${root}/img/ssafy6.PNG"></a>
 			</div>
 		</div>
 	</div>
