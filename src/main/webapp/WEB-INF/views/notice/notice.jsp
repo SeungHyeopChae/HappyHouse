@@ -140,7 +140,8 @@ pageContext.setAttribute("user", user);
 		</div>
 	</section>
 
-	
+	<form id="frm" method="post" action="">
+	</form>
 	<!--하단-->
 	<%@ include file="../viewers/footer.jsp"%>
 	<script src="${root}/js/jquery.min.js"></script>

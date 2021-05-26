@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="root" value="${pageContext.request.contextPath}" />
-	
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,116 +23,208 @@
 
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+
+
+
+
 <script type="text/javascript">
+	var iconstate = 0;
 
-var iconstate = 0;
+	var hmarker = [];
+	var smarker = [];
+	var mmarker = [];
+	var cmarker = [];
 
-var hmarker = [];
-var smarker = [];
-var mmarker = [];
-
-function station() {
-	iconstate = 1;
-	var ps = new kakao.maps.services.Places(map);	
-	ps.categorySearch('SW8', placesSearchCB, {useMapBounds:true}); 
-}
-function hospital(){
-	iconstate = 2;
-	var ps = new kakao.maps.services.Places(map);	
-	ps.categorySearch('HP8', placesSearchCB, {useMapBounds:true}); 
-}
-function mart(){
-	iconstate = 3;
-	var ps = new kakao.maps.services.Places(map);	
-	ps.categorySearch('MT1', placesSearchCB, {useMapBounds:true}); 
-}
-
-
-
-
-
-// 키워드 검색 완료 시 호출되는 콜백함수 입니다
-function placesSearchCB (data, status, pagination) {
-	if (status === kakao.maps.services.Status.OK) {
-    	for (var i=0; i<data.length; i++) {
-        	displayMarker(data[i]);    
-    	}       
+	function station() {
+		iconstate = 1;
+		var ps = new kakao.maps.services.Places(map);
+		ps.categorySearch('SW8', placesSearchCB, {
+			useMapBounds : true
+		});
 	}
-}
+	function hospital() {
+		iconstate = 2;
+		var ps = new kakao.maps.services.Places(map);
+		ps.categorySearch('HP8', placesSearchCB, {
+			useMapBounds : true
+		});
+	}
+	function mart() {
+		iconstate = 3;
+		var ps = new kakao.maps.services.Places(map);
+		ps.categorySearch('MT1', placesSearchCB, {
+			useMapBounds : true
+		});
+	}
+	function corona() {
+		infowindow.close();
+		for (var i = 0; i < hmarker.length; i++) {
+			hmarker[i].setMap(null);
+		}
+		for (var i = 0; i < mmarker.length; i++) {
+			mmarker[i].setMap(null);
+		}
+		for (var i = 0; i < smarker.length; i++) {
+			smarker[i].setMap(null);
+		}
+		var geocoder = new kakao.maps.services.Geocoder();
 
-// 지도에 마커를 표시하는 함수입니다
-function displayMarker(place) {
+		var data = [];
+		<c:if test="${hospital ne null}">
+		<c:forEach var="hos" items="${hospital}" varStatus="vs">
+		geocoder
+				.addressSearch(
+						"${hos.address}",
+						function(result, status) {
+
+							// 정상적으로 검색이 완료됐으면 
+							if (status === kakao.maps.services.Status.OK) {
+
+								var coords = new kakao.maps.LatLng(result[0].y,
+										result[0].x);
+
+								// 결과값으로 받은 위치를 마커로 표시합니다
+								var marker = new kakao.maps.Marker({
+									map : map,
+									position : coords
+								});
+								
+								cmarker.push(marker);
+								var infowindow = new kakao.maps.InfoWindow({
+							        content: '<div style="width:150px;text-align:center;padding:6px 0;">'
+										+ "${hos.dName}" + '</div>' // 인포윈도우에 표시할 내용
+							    });
+								 kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+								 kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+
+								// 인포윈도우로 장소에 대한 설명을 표시합니다
+
+
+								// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+								//map.setCenter(coords);
+							}
+						})
+		</c:forEach>
+		</c:if>
+
+	}
+
+	// 키워드 검색 완료 시 호출되는 콜백함수 입니다
+	function placesSearchCB(data, status, pagination) {
+		if (status === kakao.maps.services.Status.OK) {
+			for (var i = 0; i < data.length; i++) {
+				displayMarker(data[i]);
+			}
+		}
+	}
+
+	// 지도에 마커를 표시하는 함수입니다
+	function displayMarker(place) {
+		infowindow.close();
 		// 마커를 생성하고 지도에 표시합니다
-		if(iconstate == 1){
+		if (iconstate == 1) {
 			for (var i = 0; i < hmarker.length; i++) {
-		        hmarker[i].setMap(null);
-		    }
+				hmarker[i].setMap(null);
+			}
 			for (var i = 0; i < mmarker.length; i++) {
-		        mmarker[i].setMap(null);
-		    }
-			var imageSrc = "${root}/img/station.png"; 
+				mmarker[i].setMap(null);
+			}
+			for (var i = 0; i < cmarker.length; i++) {
+				cmarker[i].setMap(null);
+			}
+			var imageSrc = "${root}/img/station.png";
 			let imageSize = new kakao.maps.Size(25, 25);
 			let markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 			var marker = new kakao.maps.Marker({
-	    		position: new kakao.maps.LatLng(place.y, place.x),
+				position : new kakao.maps.LatLng(place.y, place.x),
 				image : markerImage
 			});
 			// 마커에 클릭이벤트를 등록합니다
 			kakao.maps.event.addListener(marker, 'click', function() {
-	    		// 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
-	    		infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
-	    		infowindow.open(map, marker);
+				// 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
+				infowindow
+						.setContent('<div style="padding:5px;font-size:12px;">'
+								+ place.place_name + '</div>');
+				infowindow.open(map, marker);
 			});
+			
+			
 			marker.setMap(map);
 			smarker.push(marker);
-		} else if(iconstate == 2){
+		} else if (iconstate == 2) {
 			for (var i = 0; i < smarker.length; i++) {
-		        smarker[i].setMap(null);
-		    }
+				smarker[i].setMap(null);
+			}
 			for (var i = 0; i < mmarker.length; i++) {
-		        mmarker[i].setMap(null);
-		    }
+				mmarker[i].setMap(null);
+			}
+			for (var i = 0; i < cmarker.length; i++) {
+				cmarker[i].setMap(null);
+			}
 			var imageSrc = "${root}/img/drug.png";
 			let imageSize = new kakao.maps.Size(25, 25);
 			let markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 			var marker = new kakao.maps.Marker({
-	    		position: new kakao.maps.LatLng(place.y, place.x),
+				position : new kakao.maps.LatLng(place.y, place.x),
 				image : markerImage
 			});
 
 			// 마커에 클릭이벤트를 등록합니다
 			kakao.maps.event.addListener(marker, 'click', function() {
-	    		// 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
-	    		infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
-	    		infowindow.open(map, marker);
+				// 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
+				infowindow
+						.setContent('<div style="padding:5px;font-size:12px;">'
+								+ place.place_name + '</div>');
+				infowindow.open(map, marker);
 			});
 			marker.setMap(map);
 			hmarker.push(marker);
-		}else if(iconstate = 3) {
+		} else if (iconstate = 3) {
 			for (var i = 0; i < smarker.length; i++) {
-		        smarker[i].setMap(null);
-		    }
+				smarker[i].setMap(null);
+			}
 			for (var i = 0; i < hmarker.length; i++) {
-		        hmarker[i].setMap(null);
-		    }
+				hmarker[i].setMap(null);
+			}
+			for (var i = 0; i < cmarker.length; i++) {
+				cmarker[i].setMap(null);
+			}
 			var imageSrc = "${root}/img/mart.png";
 			let imageSize = new kakao.maps.Size(25, 25);
 			let markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 			var marker = new kakao.maps.Marker({
-	    		position: new kakao.maps.LatLng(place.y, place.x),
+				position : new kakao.maps.LatLng(place.y, place.x),
 				image : markerImage
 			});
 
 			// 마커에 클릭이벤트를 등록합니다
 			kakao.maps.event.addListener(marker, 'click', function() {
-	    		// 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
-	    		infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
-	    		infowindow.open(map, marker);
+				// 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
+				infowindow
+						.setContent('<div style="padding:5px;font-size:12px;">'
+								+ place.place_name + '</div>');
+				infowindow.open(map, marker);
 			});
 			marker.setMap(map);
-			mmarker.push(marker);	
+			mmarker.push(marker);
 		}
-}
+	}
+	
+	function makeOverListener(map, marker, infowindow) {
+	    return function() {
+	        infowindow.open(map, marker);
+	    };
+	}
+
+	// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+	function makeOutListener(infowindow) {
+	    return function() {
+	        infowindow.close();
+	    };
+	}
+	
+	
 </script>
 
 
@@ -192,13 +284,18 @@ function displayMarker(place) {
 								<div id="map"
 									style="width: 400px; height: 200px; margin-left: auto; margin-right: auto;"></div>
 								<div>
-									<button type="button" class="btn btn-warning marginTop" onclick="javascript:station();">지하철</button>
-									<button type="button" class="btn btn-warning marginTop" onclick="javascript:hospital();">병원</button>
-									<button type="button" class="btn btn-warning marginTop" onclick="javascript:mart();">마트</button>
+									<button type="button" class="btn btn-warning marginTop"
+										onclick="javascript:station();">지하철</button>
+										<button type="button" class="btn btn-warning marginTop"
+										onclick="javascript:corona();">코로나진료소</button>
+									<button type="button" class="btn btn-warning marginTop"
+										onclick="javascript:hospital();">병원</button>
+									<button type="button" class="btn btn-warning marginTop"
+										onclick="javascript:mart();">마트</button>
 								</div>
-								
-								<div class="container"> 
-									<canvas id="myChart"></canvas> 
+
+								<div class="container">
+									<canvas id="myChart"></canvas>
 								</div>
 							</div>
 						</c:if>
@@ -207,7 +304,8 @@ function displayMarker(place) {
 			</div>
 		</div>
 	</div>
-
+	<form id="frm" method="post" action="">
+	</form>
 	<!--하단-->
 	<%@ include file="viewers/footer.jsp"%>
 	<script src="${root}/js/jquery.min.js"></script>
@@ -216,14 +314,16 @@ function displayMarker(place) {
 	<script src="${root}/js/slick.min.js"></script>
 	<script src="${root}/js/tem.js"></script>
 	<script src="${root}/js/custom.js"></script>
-	
 
 
 
 
-	
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=25135de355b0c11f7e6e55d88edc8003&libraries=services"></script>
-	<script>	
+
+
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=25135de355b0c11f7e6e55d88edc8003&libraries=services"></script>
+	<script>
+		
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 		var nlat;
 		var nlng;
@@ -233,82 +333,79 @@ function displayMarker(place) {
 		nlat = "${infos.lat}";
 		nlng = "${infos.lng}";
 		tmp = {
-				tile : "${infos.aptName}",
-				latlng: new kakao.maps.LatLng(Number(nlat), Number(nlng))
-			}
+			tile : "${infos.aptName}",
+			latlng : new kakao.maps.LatLng(Number(nlat), Number(nlng))
+		};
 		</c:if>
 		console.log(nlat);
 		console.log(nlng);
-		
-		var infowindow = new kakao.maps.InfoWindow({zIndex:1});
+
+		var infowindow = new kakao.maps.InfoWindow({
+			zIndex : 1
+		});
 		var mapContainer = document.getElementById('map');
 		var mapOption = {
 			center : new kakao.maps.LatLng(Number(nlat), Number(nlng)),
-			level : 6
+			level : 7
 		// 지도의 확대 레벨
 		};
 		var map = new kakao.maps.Map(mapContainer, mapOption);
-		
-		let imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+
+		let imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
 		let imageSize = new kakao.maps.Size(24, 35);
 		let markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
-		
+
 		var marker = new kakao.maps.Marker({
 			map : map,
-			position : tmp.latlng,						
+			position : tmp.latlng,
 			title : tmp.title,
 			image : markerImage
 		});
+
+		
+		// 주소로 좌표를 검색합니다
 	</script>
-	
+
 	<script>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-var avgamount;
-var amount;
-avgamount = "${amount}";
-amount = "${details.dealAmount}";
-console.log(avgamount);
-var deamount = amount.replace(",","");
+		
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+		var avgamount;
+		var amount;
+		avgamount = "${amount}";
+		amount = "${details.dealAmount}";
+		console.log(avgamount);
+		var deamount = amount.replace(",", "");
 
-var data = [];
-data.push(avgamount);
-data.push(deamount);
+		var data = [];
+		data.push(avgamount);
+		data.push(deamount);
 
-
-var ctx = document.getElementById('myChart'); 
-var myChart = new Chart(ctx, { 
-	type: 'bar', 
-	data: { 
-		labels: ['평균 가격', '매물 가격'], 
-		datasets: [
-			{ 
-				label: '# of Votes',
-				data: data, 
-				backgroundColor: [ 
-					'rgba(255, 99, 132, 0.2)', 
-					'rgba(54, 162, 235, 0.2)'		
-					], 
-					borderColor: [ 
-						'rgba(255, 99, 132, 1)', 
-						'rgba(54, 162, 235, 1)'			
-						], 
-						borderWidth: 1 
+		var ctx = document.getElementById('myChart');
+		var myChart = new Chart(ctx, {
+			type : 'bar',
+			data : {
+				labels : [ '평균 가격', '매물 가격' ],
+				datasets : [ {
+					label : '가격',
+					data : data,
+					backgroundColor : [ 'rgba(255, 99, 132, 0.2)',
+							'rgba(54, 162, 235, 0.2)' ],
+					borderColor : [ 'rgba(255, 99, 132, 1)',
+							'rgba(54, 162, 235, 1)' ],
+					borderWidth : 1
+				} ]
+			},
+			options : {
+				scales : {
+					yAxes : [ {
+						ticks : {
+							beginAtZero : true
 						}
-			] 
-		}, 
-		options: { 
-			scales: { 
-				yAxes: [
-					{ 
-						ticks: { 
-							beginAtZero: true 
-							} 
-					}
-				] 
-			} 
-		} 
-	}); 
-</script>
+					} ]
+				}
+			}
+		});
+	</script>
 
 </body>
 </html>

@@ -20,6 +20,59 @@
 <link href="${root}/css/typography-default.css" rel="stylesheet">
 <link href="${root}/css/bt.css" rel="stylesheet">
 <link href="${root}/css/light.css" rel="stylesheet">
+
+<script type="text/javascript">
+	function login() {
+		if (document.getElementById("userid").value == "") {
+			alert("아이디 입력!!!");
+			return;
+		} else if (document.getElementById("userpwd").value == "") {
+			alert("비밀번호 입력!!!");
+			return;
+		} else {
+
+			document.getElementById("loginform").action = "${root}/member/login";
+			document.getElementById("loginform").submit();
+		}
+	}
+
+	function moveJoin() {
+		alert("회원가입")
+		document.location.href = "${root}/member/regist";
+	}
+	function search() {
+		document.getElementById("frm").action = "${root}/house/search?pg=1&key=dong&word="
+				+ $("#dong").val();
+		document.getElementById("frm").submit();
+
+	}
+	function searchlike() {
+		$
+				.ajax({
+					url : "${root}/likearea/search", //데이터베이스에 접근해 현재페이지로 결과를 뿌려줄 페이지
+					type : "POST",
+					data : {
+						"userid" : "${userinfo.userId}"
+					},
+					success : function(data) { //DB접근 후 가져온 데이터
+						if (data.dong == undefined) {
+							alert("관심지역을 등록해주세요.")
+						} else {
+							document.getElementById("frm").action = "${root}/house/search?pg=1&key=dong&word="
+									+ data.dong;
+							document.getElementById("frm").submit();
+						}
+					}
+
+				})
+
+	}
+
+	function deleteMember() {
+		alert("탈퇴하시겠습니까?");
+		document.location.href = "${root}/member/delete";
+	}
+</script>
 <style>
 .inputType {
 	border-radius: 10px;
@@ -104,17 +157,20 @@
 																id="userpwd" name="userpwd"> <i
 																class="fa fa-lock form-control-feedback"></i>
 														</div>
-														<button type="submit" id="loginbtn" class="btn btn-gray btn-sm mr-6"
+														<button type="submit" id="loginbtn"
+															class="btn btn-gray btn-sm mr-6"
 															onclick="javascript:login();">로 그 인</button>
-														<button class="btn btn-default btn-sm" onclick = "location.href='${root }/member/forget'"> 비밀번호 찾기 </button>
-															
+														<button class="btn btn-default btn-sm"
+															onclick="location.href='${root }/member/forget'">
+															비밀번호 찾기</button>
+
 														<div class="form-group form-check" align="right">
 															<label class="form-check-label"> <input
 																class="form-check-input" type="checkbox" id="idsave"
 																name="idsave" value="saveok" ${idck}> 아이디저장
 															</label>
 														</div>
-<%-- 
+														<%-- 
 														<ul class='pagination'>
 															<!--
 														<li>
@@ -148,161 +204,165 @@
 				</div>
 			</div>
 		</div>
-			<!-- header-top end -->
+		<!-- header-top end -->
 
-			<!-- header start -->
-			<!-- classes:  -->
-			<!-- "fixed": enables fixed navigation mode (sticky menu) e.g. class="header fixed clearfix" -->
-			<!-- "fixed-desktop": enables fixed navigation only for desktop devices e.g. class="header fixed fixed-desktop clearfix" -->
-			<!-- "fixed-all": enables fixed navigation only for all devices desktop and mobile e.g. class="header fixed fixed-desktop clearfix" -->
-			<!-- "dark": dark version of header e.g. class="header dark clearfix" -->
-			<!-- "centered": mandatory class for the centered logo layout -->
-			<!-- ================ -->
-			<header class="header fixed fixed-desktop clearfix">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-auto hidden-md-down">
-							<!-- header-first start -->
-							<!-- ================ -->
-							<div class="header-first clearfix">
+		<!-- header start -->
+		<!-- classes:  -->
+		<!-- "fixed": enables fixed navigation mode (sticky menu) e.g. class="header fixed clearfix" -->
+		<!-- "fixed-desktop": enables fixed navigation only for desktop devices e.g. class="header fixed fixed-desktop clearfix" -->
+		<!-- "fixed-all": enables fixed navigation only for all devices desktop and mobile e.g. class="header fixed fixed-desktop clearfix" -->
+		<!-- "dark": dark version of header e.g. class="header dark clearfix" -->
+		<!-- "centered": mandatory class for the centered logo layout -->
+		<!-- ================ -->
+		<header class="header fixed fixed-desktop clearfix">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-auto hidden-md-down">
+						<!-- header-first start -->
+						<!-- ================ -->
+						<div class="header-first clearfix">
 
-								<!-- logo -->
-								<div id="logo" class="logo">
-									<a href="${root}/"><img id="logo_img"
-										src="http://edu.ssafy.com/asset/images/header-logo.jpg"
-										width='80' alt="The SSAFY"></a>
-								</div>
+							<!-- logo -->
+							<div id="logo" class="logo">
+								<a href="${root}/"><img id="logo_img"
+									src="http://edu.ssafy.com/asset/images/header-logo.jpg"
+									width='80' alt="The SSAFY"></a>
 							</div>
 						</div>
-						<div class="col-lg-10 ml-auto">
+					</div>
+					<div class="col-lg-10 ml-auto">
 
-							<!-- header-second start -->
+						<!-- header-second start -->
+						<!-- ================ -->
+						<div class="header-second clearfix">
+
+							<!-- main-navigation start -->
+							<!-- classes: -->
+							<!-- "onclick": Makes the dropdowns open on click, this the default bootstrap behavior e.g. class="main-navigation onclick" -->
+							<!-- "animated": Enables animations on dropdowns opening e.g. class="main-navigation animated" -->
 							<!-- ================ -->
-							<div class="header-second clearfix">
+							<div class="main-navigation main-navigation--mega-menu  animated">
+								<nav class="navbar navbar-expand-lg navbar-light p-0">
+									<div class="navbar-brand clearfix hidden-lg-up">
 
-								<!-- main-navigation start -->
-								<!-- classes: -->
-								<!-- "onclick": Makes the dropdowns open on click, this the default bootstrap behavior e.g. class="main-navigation onclick" -->
-								<!-- "animated": Enables animations on dropdowns opening e.g. class="main-navigation animated" -->
-								<!-- ================ -->
-								<div
-									class="main-navigation main-navigation--mega-menu  animated">
-									<nav class="navbar navbar-expand-lg navbar-light p-0">
-										<div class="navbar-brand clearfix hidden-lg-up">
-
-											<!-- logo -->
-											<div id="logo-mobile" class="logo">
-												<a href="${root}/"><img id="logo-img-mobile"
-													src="http://edu.ssafy.com/asset/images/header-logo.jpg"
-													width='150' alt="The SSAFY"></a>
-
-											</div>
+										<!-- logo -->
+										<div id="logo-mobile" class="logo">
+											<a href="${root}/"><img id="logo-img-mobile"
+												src="http://edu.ssafy.com/asset/images/header-logo.jpg"
+												width='150' alt="The SSAFY"></a>
 
 										</div>
 
-										<!-- header dropdown buttons -->
-										<div
-											class="header-dropdown-buttons hidden-lg-up p-0 ml-auto mr-3">
-											<div class="btn-group">
-												<button type="button"
-													class="btn dropdown-toggle dropdown-toggle--no-caret"
-													id="header-drop-3" data-toggle="dropdown"
-													aria-haspopup="true" aria-expanded="false">
-													<i class="fa fa-search"></i>
-												</button>
-												<ul
-													class="dropdown-menu dropdown-menu-right dropdown-animation"
-													aria-labelledby="header-drop-3">
-													<li>
-														<form role="search" class="search-box margin-clear">
-															<div class="form-group has-feedback">
-																<input type="text" class="form-control"
-																	placeholder="Search"> <i
-																	class="fa fa-search form-control-feedback"></i>
-															</div>
-														</form>
-													</li>
-												</ul>
-											</div>
+									</div>
+
+									<!-- header dropdown buttons -->
+									<div
+										class="header-dropdown-buttons hidden-lg-up p-0 ml-auto mr-3">
+										<div class="btn-group">
+											<button type="button"
+												class="btn dropdown-toggle dropdown-toggle--no-caret"
+												id="header-drop-3" data-toggle="dropdown"
+												aria-haspopup="true" aria-expanded="false">
+												<i class="fa fa-search"></i>
+											</button>
+											<ul
+												class="dropdown-menu dropdown-menu-right dropdown-animation"
+												aria-labelledby="header-drop-3">
+												<li>
+													<form role="search" class="search-box margin-clear">
+														<div class="form-group has-feedback">
+															<input type="text" class="form-control"
+																placeholder="Search"> <i
+																class="fa fa-search form-control-feedback"></i>
+														</div>
+													</form>
+												</li>
+											</ul>
 										</div>
-										<!-- header dropdown buttons end -->
-											<c:if test="${userinfo eq null}">
+									</div>
+									<!-- header dropdown buttons end -->
+									<c:if test="${userinfo eq null}">
 
-											<button class="navbar-toggler" type="button"
-												data-toggle="collapse" data-target="#navbar-collapse-1"
-												aria-controls="navbar-collapse-1" aria-expanded="false"
-												aria-label="Toggle navigation">
-												<span class="navbar-toggler-icon"></span>
-											</button>
+										<button class="navbar-toggler" type="button"
+											data-toggle="collapse" data-target="#navbar-collapse-1"
+											aria-controls="navbar-collapse-1" aria-expanded="false"
+											aria-label="Toggle navigation">
+											<span class="navbar-toggler-icon"></span>
+										</button>
 
-											<div class="collapse navbar-collapse" id="navbar-collapse-1">
-												<ul class="navbar-nav ml-xl-auto">
-													<li class="nav-item dropdown  mega-menu mega-menu--wide">
-														<a href="${root}/notice/list?pg=1&key=&word="
-														class="nav-link " id="first-dropdown" aria-haspopup="true"
-														aria-expanded="false">공지사항</a>
-													</li>
-													<li class="nav-item dropdown mega-menu mega-menu--wide">
-														<!-- <a href="foodBestList.do?id=n" class="nav-link dropdown-toggle" id="second-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">영양 정보</a> -->
-														<a href="/news.do?arti_id=1" class="nav-link"
-														id="second-dropdown" aria-haspopup="true"
-														aria-expanded="false">오늘의 뉴스</a>
-													</li>
-												</ul>
-												<!-- main-menu end -->
-											</div>
-										</c:if>
+										<div class="collapse navbar-collapse" id="navbar-collapse-1">
+											<ul class="navbar-nav ml-xl-auto">
+												<li class="nav-item dropdown  mega-menu mega-menu--wide">
+													<a href="${root}/notice/list?pg=1&key=&word="
+													class="nav-link " id="first-dropdown" aria-haspopup="true"
+													aria-expanded="false">공지사항</a>
+												</li>
+												<li class="nav-item dropdown  mega-menu mega-menu--wide">
+													<a href="${root}/bd"
+													class="nav-link " id="first-dropdown" aria-haspopup="true"
+													aria-expanded="false">QnA 게시판</a>
+												</li>
+												<li class="nav-item dropdown mega-menu mega-menu--wide">
+													<!-- <a href="foodBestList.do?id=n" class="nav-link dropdown-toggle" id="second-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">영양 정보</a> -->
+													<a href="/news.do?arti_id=1" class="nav-link"
+													id="second-dropdown" aria-haspopup="true"
+													aria-expanded="false">오늘의 뉴스</a>
+												</li>
+											</ul>
+											<!-- main-menu end -->
+										</div>
+									</c:if>
 
-										<c:if test="${userinfo ne null}">
-											<button class="navbar-toggler" type="button"
-												data-toggle="collapse" data-target="#navbar-collapse-1"
-												aria-controls="navbar-collapse-1" aria-expanded="false"
-												aria-label="Toggle navigation">
-												<span class="navbar-toggler-icon"></span>
-											</button>
+									<c:if test="${userinfo ne null}">
+										<button class="navbar-toggler" type="button"
+											data-toggle="collapse" data-target="#navbar-collapse-1"
+											aria-controls="navbar-collapse-1" aria-expanded="false"
+											aria-label="Toggle navigation">
+											<span class="navbar-toggler-icon"></span>
+										</button>
 
-											<div class="collapse navbar-collapse" id="navbar-collapse-1">
-												<ul class="navbar-nav ml-xl-auto">
-													<li class="nav-item dropdown  mega-menu mega-menu--wide">
-														<a href="${root}/notice/list?pg=1&key=&word="
-														class="nav-link " id="first-dropdown" aria-haspopup="true"
-														aria-expanded="false">공지사항</a>
-													</li>
-													<li class="nav-item dropdown mega-menu mega-menu--wide">
-														<!-- <a href="foodBestList.do?id=n" class="nav-link dropdown-toggle" id="second-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">영양 정보</a> -->
-														<a href="/news.do?arti_id=1" class="nav-link"
-														id="second-dropdown" aria-haspopup="true"
-														aria-expanded="false">오늘의 뉴스</a>
-													</li>
-													<li class="nav-item dropdown mega-menu mega-menu--wide">
-														<!-- <a href="foodBestList.do?id=n" class="nav-link dropdown-toggle" id="second-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">영양 정보</a> -->
-														<a href="/news.do?arti_id=1" class="nav-link"
-														id="second-dropdown" aria-haspopup="true"
-														aria-expanded="false">주변 탐방</a>
-													</li>
-													<li class="nav-item dropdown mega-menu mega-menu--wide">
-														<!-- <a href="foodBestList.do?id=n" class="nav-link dropdown-toggle" id="second-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">영양 정보</a> -->
-														<a href="${root}/likearea/regist" class="nav-link"
-														id="second-dropdown" aria-haspopup="true"
-														aria-expanded="false">관심지역 설정</a>
-													</li>
-													<li class="nav-item dropdown mega-menu mega-menu--wide">
-														<!-- <a href="foodBestList.do?id=n" class="nav-link dropdown-toggle" id="second-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">영양 정보</a> -->
-														<a class="nav-link"
-														id="second-dropdown" aria-haspopup="true"
-														aria-expanded="false" onclick="javascript:searchlike();">관심지역 둘러보기</a>
-													</li>
-												</ul>
-												<!-- main-menu end -->
-											</div>
-										</c:if>
-									</nav>
-								</div>
+										<div class="collapse navbar-collapse" id="navbar-collapse-1">
+											<ul class="navbar-nav ml-xl-auto">
+												<li class="nav-item dropdown  mega-menu mega-menu--wide">
+													<a href="${root}/notice/list?pg=1&key=&word="
+													class="nav-link " id="first-dropdown" aria-haspopup="true"
+													aria-expanded="false">공지사항</a>
+												</li>
+												<li class="nav-item dropdown  mega-menu mega-menu--wide">
+													<a href="${root}/bd"
+													class="nav-link " id="first-dropdown" aria-haspopup="true"
+													aria-expanded="false">QnA 게시판</a>
+												</li>
+												<li class="nav-item dropdown mega-menu mega-menu--wide">
+													<!-- <a href="foodBestList.do?id=n" class="nav-link dropdown-toggle" id="second-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">영양 정보</a> -->
+													<a href="/news.do?arti_id=1" class="nav-link"
+													id="second-dropdown" aria-haspopup="true"
+													aria-expanded="false">오늘의 뉴스</a>
+												</li>
+												<li class="nav-item dropdown mega-menu mega-menu--wide">
+													<!-- <a href="foodBestList.do?id=n" class="nav-link dropdown-toggle" id="second-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">영양 정보</a> -->
+													<a href="${root}/likearea/regist" class="nav-link"
+													id="second-dropdown" aria-haspopup="true"
+													aria-expanded="false">관심지역 설정</a>
+												</li>
+												<li class="nav-item dropdown mega-menu mega-menu--wide">
+													<!-- <a href="foodBestList.do?id=n" class="nav-link dropdown-toggle" id="second-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">영양 정보</a> -->
+													<a class="nav-link" id="second-dropdown"
+													aria-haspopup="true" aria-expanded="false"
+													onclick="javascript:searchlike();">관심지역 둘러보기</a>
+													
+												</li>
+											</ul>
+											<!-- main-menu end -->
+										</div>
+									</c:if>
+								</nav>
 							</div>
 						</div>
 					</div>
 				</div>
-			</header>
-			<!-- header end -->
-		</div>
+			</div>
+		</header>
+		<!-- header end -->
+	</div>
 </html>
