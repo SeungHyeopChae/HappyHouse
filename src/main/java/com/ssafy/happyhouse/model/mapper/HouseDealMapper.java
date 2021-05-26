@@ -8,14 +8,15 @@ import com.ssafy.happyhouse.model.NoticeDto;
 
 public interface HouseDealMapper {
 	
-	List<HouseDealDto> listhouse(String code);
-//	List<HouseDealDto> listhouse(Map<String, Object> param);
+//	List<HouseDealDto> listhouse(String code);
+	List<HouseDealDto> listhouse(Map<String, Object> param);
 	
 	List<HouseDealDto> listlike(String key);
 	
 	List<HouseDealDto> listall(Map<String, Object> param);
 	
-	int getTotalCount(Map<String, String> map);
+	int getTotalCountAll(Map<String, String> map);
+	int getTotalCountDong(Map<String, String> map);
 	
 	HouseDealDto detail(int no);
 	

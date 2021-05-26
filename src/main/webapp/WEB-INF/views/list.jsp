@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="root" value="${pageContext.request.contextPath}" />
-
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -19,10 +19,82 @@
 <link href="${root}/css/typography-default.css" rel="stylesheet">
 <link href="${root}/css/bt.css" rel="stylesheet">
 <link href="${root}/css/light.css" rel="stylesheet">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
+<<<<<<< HEAD
+=======
+<script defer
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdgUFP7WNqnjlmJ0OS__3Nf9Et7aOoxnI&callback=initMap&libraries=&v=weekly"></script>
+<script>
+	let map;
+	var nlat;
+	var nlng;
+	var ndong;
+	<c:if test="${latlng ne null}">
+	nlat = "${latlng.lat}";
+	nlng = "${latlng.lng}";
+	ndong = "${latlng.dong}";
+	</c:if>
+	console.log(nlat);
+	console.log(nlng);
+	console.log(ndong);
+>>>>>>> branch 'master' of https://lab.ssafy.com/yaron_e5/happyhouseproject.git
 
+<<<<<<< HEAD
 
+=======
+	function initMap() {
+		map = new google.maps.Map(document.getElementById("map"), {
+			center : {
+				lat : Number(nlat),
+				lng : Number(nlng)
+			},
+			zoom : 15
+		})
+		var myIcon = new google.maps.MarkerImage("${root}/img/drug.png", null,
+				null, null, new google.maps.Size(50, 50));
+		console.log("아작스진입");
+		$.ajax({
+			url : "${root}/house/list",
+			type : "POST",
+			data : {
+				"dong" : ndong
+			},
+			success : function(data) {
+				for (let i = 0; i < data.length; i++) {
+					console.log("반복문진입");
+					var tmp = {
+						lat : Number(data[i].lat),
+						lng : Number(data[i].lng)
+					}
+					var marker = new google.maps.Marker({
+						position : tmp,
+						icon : myIcon,
+						map : map,
+						title : data[i].AptName
+					});
+				}
+			}
+		})
+	}
+</script>
+<script type="text/javascript">
+	$(document).ready(function() {
+
+		$(".page-item").click(function() {
+			
+			$("#pg").val(($(this).attr("data-pg")));
+			
+			$("#pageform").attr("action", "${root}/house/search").submit();
+		});
+		
+
+	});
+
+</script>
+>>>>>>> branch 'master' of https://lab.ssafy.com/yaron_e5/happyhouseproject.git
 <style>
 .banner {
 	background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
@@ -34,283 +106,73 @@
 </style>
 </head>
 <body>
-	<div class="scrollToTop circle">
-		<i class="fa fa-angle-u
-	p"></i>
+	<%@include file="viewers/header.jsp"%>
+	<form name="pageform" id="pageform" method="POST" action="">
+		<input type="hidden" name="pg" id="pg" value="">
+	</form>
+
+	<!--HAPPY HOUSE 행복한 우리집-->
+	<div class="banner dark-translucent-bg">
+		<div class="container-fluid">
+			<div class="justify-content-center">
+				<h1 class=""
+					style="text-align: center; color: white; margin-top: 50px;">HAPPY
+					HOUSE</h1>
+				<hr>
+				<p style="text-align: center; color: white;">행복한 우리집</p>
+			</div>
+		</div>
 	</div>
-	<div class="page-wrapper">
 
 
 
+	<div class="row">
+		<div class="col-lg-1"></div>
+		<div class="col-lg-3">
+			<div class="sidebar">
 
-		<!-- header-container start -->
-		<div class="header-container">
-			<!-- header-top start -->
-			<!-- classes:  -->
-			<!-- "dark": dark version of header top e.g. class="header-top dark" -->
-			<!-- "colored": colored version of header top e.g. class="header-top colored" -->
-			<!-- ================ -->
-			<div class="header-top dark">
-				<div class="container">
-					<div class="row">
-						<div class="col-3 col-sm-6 col-lg-9">
-							<!-- header-top-first start -->
-							<!-- ================ -->
-							<div class="header-top-first clearfix"></div>
-							<!-- header-top-first end -->
-						</div>
-						<div class="col-9 col-sm-6 col-lg-3">
-
-							<!-- header-top-second start -->
-							<!-- ================ -->
-							<div id="header-top-second" class="clearfix">
-
-								<!-- header top dropdowns start -->
-								<!-- ================ -->
-								<div class="header-top-dropdown text-right">
-
-
-									<c:if test="${userinfo eq null}">
-										<div class="btn-group">
-											<a class="btn btn-default btn-sm"
-												onclick="javascript:moveJoin();"> <i
-												class="fa fa-user pr-2"></i> Sign Up
-											</a>
-										</div>
-										<div class="btn-group">
-											<button id="header-top-drop-2" type="button"
-												class="btn dropdown-toggle btn-default btn-sm dropdown-toggle--no-caret"
-												data-toggle="dropdown" aria-haspopup="true"
-												aria-expanded="false">
-												<i class="fa fa-lock pr-2"></i> Login
-											</button>
-											<ul
-												class="dropdown-menu dropdown-menu-right dropdown-animation"
-												aria-labelledby="header-top-drop-2">
-												<li>
-
-													<form class="login-form margin-clear" id="loginform"
-														action="main" method="post">
-														<input type="hidden" name="act" id="act" value="login">
-														<div class="form-group has-feedback">
-															<label class="control-label">아 이 디</label> <input
-																type="text" class="form-control" placeholder=""
-																id="userid" name="userid" value="${saveid}"> <i
-																class="fa fa-user form-control-feedback"></i>
-														</div>
-														<div class="form-group has-feedback">
-															<label class="control-label">비밀번호</label> <input
-																type="password" class="form-control" placeholder=""
-																id="userpwd" name="userpwd"> <i
-																class="fa fa-lock form-control-feedback"></i>
-														</div>
-														<button type="submit" class="btn btn-gray btn-sm"
-															onclick="javascript:login();">로 그 인</button>
-														<div class="form-group form-check" align="right">
-															<label class="form-check-label"> <input
-																class="form-check-input" type="checkbox" id="idsave"
-																name="idsave" value="saveok" ${idck}> 아이디저장
-															</label>
-														</div>
-
-														<ul class='pagination'>
-															<!--
-														<li>
-														<a href="#" class="btn btn-default btn-sm">아이디
-																찾기</a></li>
-														-->
-															<li><a href="${root}/member/forget"
-																class="btn btn-default btn-sm">비밀번호 찾기</a></li>
-														</ul>
-
-													</form>
-												</li>
-											</ul>
-										</div>
-									</c:if>
-
-									<c:if test="${userinfo ne null}">
-										<%@ include file="member/confirm.jsp"%>
-
-									</c:if>
+				<div class="block clearfix" id="houseInfo">
+					<table>
+						<tr>
+							<td>
+								<h3>거래 정보</h3>
+							</td>
+							<td><select class="form-control ml-5" name="spp" id="spp"
+								onchange="javascript:countList();">
+									<option value="10" selected="selected">5개씩보기</option>
+									<option value="20">10개씩보기</option>
+									<option value="50">20개씩보기</option>
+							</select></td>
+						</tr>
+					</table>
 
 
 
-								</div>
-								<!--  header top dropdowns end -->
-							</div>
-							<!-- header-top-second end -->
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- header-top end -->
+					<div class="separator-2"></div>
 
-			<header class="header fixed fixed-desktop clearfix">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-auto hidden-md-down">
-							<!-- header-first start -->
-							<!-- ================ -->
-							<div class="header-first clearfix">
-
-								<!-- logo -->
-								<div id="logo" class="logo">
-									<a href="${root}/"><img id="logo_img"
-										src="http://edu.ssafy.com/asset/images/header-logo.jpg"
-										width='150' alt="The SSAFY"></a>
-								</div>
+					<c:forEach var="list" items="${houseList}" varStatus="vs">
+						<div class="media margin-clear">
+							<div class="media-body">
+								<h4>
+									<a href="${root}/house/detail?no=${list.no}">${list.aptName}</a>
+								</h4>
+								<h6 class="media-heading" id="deal">거래금액
+									:${list.dealAmount}만원</h6>
+								<h6 class="media-heading" id="deal">면적: ${list.area}</h6>
+								<p class="small margin-clear">
+									<i class="fa fa-calendar pr-10"></i>${list.dealYear}
+									(${list.dealMonth}) (${list.dealDay})
+								</p>
 							</div>
 						</div>
-						<div class="col-lg-10 ml-auto">
-
-							<!-- header-second start -->
-							<!-- ================ -->
-							<div class="header-second clearfix">
-
-								<!-- main-navigation start -->
-								<!-- classes: -->
-								<!-- "onclick": Makes the dropdowns open on click, this the default bootstrap behavior e.g. class="main-navigation onclick" -->
-								<!-- "animated": Enables animations on dropdowns opening e.g. class="main-navigation animated" -->
-								<!-- ================ -->
-								<div
-									class="main-navigation main-navigation--mega-menu  animated">
-									<nav class="navbar navbar-expand-lg navbar-light p-0">
-										<div class="navbar-brand clearfix hidden-lg-up">
-
-											<!-- logo -->
-											<div id="logo-mobile" class="logo">
-												<a href="${root}/"><img id="logo-img-mobile"
-													src="http://edu.ssafy.com/asset/images/header-logo.jpg"
-													width='150' alt="The SSAFY"></a>
-
-											</div>
-
-										</div>
-
-										<!-- header  dropdown buttons -->
-										<div
-											class="header-dropdown-buttons hidden-lg-up p-0 ml-auto mr-3">
-											<div class="btn-group">
-												<button type="button"
-													class="btn dropdown-toggle dropdown-toggle--no-caret"
-													id="header-drop-3" data-toggle="dropdown"
-													aria-haspopup="true" aria-expanded="false">
-													<i class="fa fa-search"></i>
-												</button>
-												<ul
-													class="dropdown-menu dropdown-menu-right dropdown-animation"
-													aria-labelledby="header-drop-3">
-													<li>
-														<form role="search" class="search-box margin-clear">
-															<div class="form-group has-feedback">
-																<input type="text" class="form-control"
-																	placeholder="Search"> <i
-																	class="fa fa-search form-control-feedback"></i>
-															</div>
-														</form>
-													</li>
-												</ul>
-											</div>
-										</div>
-										<!-- header dropdown buttons end -->
-
-										<c:if test="${userinfo eq null}">
-
-											<button class="navbar-toggler" type="button"
-												data-toggle="collapse" data-target="#navbar-collapse-1"
-												aria-controls="navbar-collapse-1" aria-expanded="false"
-												aria-label="Toggle navigation">
-												<span class="navbar-toggler-icon"></span>
-											</button>
-
-											<div class="collapse navbar-collapse" id="navbar-collapse-1">
-												<ul class="navbar-nav ml-xl-auto">
-													<li class="nav-item dropdown  mega-menu mega-menu--wide">
-														<a href="${root}/notice/list?pg=1&key=&word="
-														class="nav-link " id="first-dropdown" aria-haspopup="true"
-														aria-expanded="false">공지사항</a>
-													</li>
-													<li class="nav-item dropdown mega-menu mega-menu--wide">
-														<!-- <a href="foodBestList.do?id=n" class="nav-link dropdown-toggle" id="second-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">영양 정보</a> -->
-														<a href="/news.do?arti_id=1" class="nav-link"
-														id="second-dropdown" aria-haspopup="true"
-														aria-expanded="false">오늘의 뉴스</a>
-													</li>
-												</ul>
-												<!-- main-menu end -->
-											</div>
-										</c:if>
-
-										<c:if test="${userinfo ne null}">
-											<button class="navbar-toggler" type="button"
-												data-toggle="collapse" data-target="#navbar-collapse-1"
-												aria-controls="navbar-collapse-1" aria-expanded="false"
-												aria-label="Toggle navigation">
-												<span class="navbar-toggler-icon"></span>
-											</button>
-
-											<div class="collapse navbar-collapse" id="navbar-collapse-1">
-												<ul class="navbar-nav ml-xl-auto">
-													<li class="nav-item dropdown  mega-menu mega-menu--wide">
-														<a href="${root}/notice/list?pg=1&key=&word="
-														class="nav-link " id="first-dropdown" aria-haspopup="true"
-														aria-expanded="false">공지사항</a>
-													</li>
-													<li class="nav-item dropdown mega-menu mega-menu--wide">
-														<!-- <a href="foodBestList.do?id=n" class="nav-link dropdown-toggle" id="second-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">영양 정보</a> -->
-														<a href="/news.do?arti_id=1" class="nav-link"
-														id="second-dropdown" aria-haspopup="true"
-														aria-expanded="false">오늘의 뉴스</a>
-													</li>
-													<li class="nav-item dropdown mega-menu mega-menu--wide">
-														<!-- <a href="foodBestList.do?id=n" class="nav-link dropdown-toggle" id="second-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">영양 정보</a> -->
-														<a href="/news.do?arti_id=1" class="nav-link"
-														id="second-dropdown" aria-haspopup="true"
-														aria-expanded="false">주변 탐방</a>
-													</li>
-													<li class="nav-item dropdown mega-menu mega-menu--wide">
-														<!-- <a href="foodBestList.do?id=n" class="nav-link dropdown-toggle" id="second-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">영양 정보</a> -->
-														<a href="${root }/main?act=likeregi" class="nav-link"
-														id="second-dropdown" aria-haspopup="true"
-														aria-expanded="false">관심지역 설정</a>
-													</li>
-													<li class="nav-item dropdown mega-menu mega-menu--wide">
-														<!-- <a href="foodBestList.do?id=n" class="nav-link dropdown-toggle" id="second-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">영양 정보</a> -->
-														<a class="nav-link" id="second-dropdown"
-														aria-haspopup="true" aria-expanded="false"
-														onclick="javascript:searchlike();">관심지역 둘러보기</a>
-													</li>
-												</ul>
-												<!-- main-menu end -->
-											</div>
-										</c:if>
-
-									</nav>
-								</div>
-							</div>
-						</div>
-					</div>
+						<hr>
+					</c:forEach>
 				</div>
-			</header>
-			<!-- header end -->
-		</div>
 
-		<!-- header-second end -->
-
-		<!--HAPPY HOUSE 행복한 우리집-->
-		<div class="banner dark-translucent-bg">
-			<div class="container-fluid">
-				<div class="justify-content-center">
-					<h1 class=""
-						style="text-align: center; color: white; margin-top: 50px;">HAPPY
-						HOUSE</h1>
-					<hr>
-					<p style="text-align: center; color: white;">행복한 우리집</p>
-				</div>
 			</div>
 		</div>
 
+<<<<<<< HEAD
 
 
 		<div class="row">
@@ -346,16 +208,32 @@
 
 
 			<!--지도 부분-->
+=======
+		<!--지도 부분-->
+		<div class="col-sm-8">
+>>>>>>> branch 'master' of https://lab.ssafy.com/yaron_e5/happyhouseproject.git
 			<div class="container justify-content-right"
-				style="margin-top: 50px;">
+				style="margin-top: 70px;">
 
+<<<<<<< HEAD
 				<div id="map" style="width:100%;height:350px;"></div>
+=======
+				<div id="map"
+					style="width: 800px; height: 600px; margin-left: auto; margin-right: auto;"></div>
+>>>>>>> branch 'master' of https://lab.ssafy.com/yaron_e5/happyhouseproject.git
 			</div>
+
 
 
 		</div>
 
+	</div>
+	<div class="row2">
+		<div class="col-lg-12">
+			<p>${navigation.navigator}</p>
+		</div>
 
+<<<<<<< HEAD
 
 
 
@@ -464,5 +342,15 @@
 					}
 				})
 		</script>
+=======
+	</div>
+	<%@include file="viewers/footer.jsp"%>
+	<script src="${root}/js/jquery.min.js"></script>
+	<script src="${root}/js/bootstrap.bundle.min.js"></script>
+	<script src="${root}/js/popup.min.js"></script>
+	<script src="${root}/js/slick.min.js"></script>
+	<script src="${root}/js/tem.js"></script>
+	<script src="${root}/js/custom.js"></script>
+>>>>>>> branch 'master' of https://lab.ssafy.com/yaron_e5/happyhouseproject.git
 </body>
 </html>

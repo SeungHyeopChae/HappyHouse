@@ -27,8 +27,8 @@ public class NoticeServiceImpl implements NoticeService{
 	@Override
 	public List<NoticeDto> listArticle(Map<String, String> map){
 		Map<String, Object> param = new HashMap<String, Object>();
-		param.put("key", map.get("key") == null ? "" : map.get("key"));
-		param.put("word", map.get("word") == null ? "" : map.get("word"));
+//		param.put("key", map.get("key") == null ? "" : map.get("key"));
+//		param.put("word", map.get("word") == null ? "" : map.get("word"));
 		int currentPage = Integer.parseInt(map.get("pg") == null ? "1" : map.get("pg"));
 		int sizePerPage = Integer.parseInt(map.get("spp"));
 		System.out.println("pg : " + currentPage + " " + "spp : " + sizePerPage);

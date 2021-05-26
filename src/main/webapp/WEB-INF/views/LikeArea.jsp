@@ -24,7 +24,8 @@
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+<script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js" type="text/JavaScript"></script>
 
 
 <script type="text/javascript">
@@ -148,15 +149,16 @@ $(document).ready(function() {
 	<div class="container-fluid p-3 my-3text-white"
 		style="background-color: #707070;">
 		<div class="container p-3 my-3">
-			<div class="row justify-content-center"
+			<div class="bg"
 				style="background-color: #F9F9F9; height: 500px;">
-				<div class="row" style="margin-top: 20px;">
-					<h2 class="title">관심지역 설정</h2>
+				<hr>
+				<div class="title" >
+					<h2 class="title2" style="margin-top:10px; margin-left:10px;">관심지역을 설정해보세요 !</h2>
 				</div>
-				<div class="light-gray-bg border-clear" style="margin-top: 70px;">
+				<div class="light-gray-bg border-clear" style="margin-top: 20px;">
 					<form class="form-inline" id="frm" action="" method="post">
 						<div class="form-group md">
-							<select class="form-control" name="city" id="city">
+							<select class="form-control" style="margin-left:10px;"name="city" id="city">
 								<c:if test="${gugunlist eq null}">
 									<option value="all">도/광역시</option>
 									<option value="서울특별시">서울시</option>
@@ -205,17 +207,23 @@ $(document).ready(function() {
 							</select>
 
 						</div>
-						<div id="demo"
-							style="width: 550px; height: 350px; border: 1px solid black"></div>
+						
 						<div>
-							<button type="button" class="btn btn-warning marginTop">닫기
-								✔</button>
+							
 							<button type="button" id="regiarea"
-								class="btn btn-warning marginTop"
+								class="btn btn-warning marginTop ml-1"
 								onclick="javascript:insertLikeArea();">등록 ✔</button>
 						</div>
 
 					</form>
+					<div class="row">
+						<div class="col-lg-12">
+					<div id="demo"
+							style="width: 550px; height: 300px; border: 1px "></div>
+					</div>
+				</div>
+					
+					
 				</div>
 			</div>
 		</div>
