@@ -19,82 +19,19 @@
 <link href="${root}/css/typography-default.css" rel="stylesheet">
 <link href="${root}/css/bt.css" rel="stylesheet">
 <link href="${root}/css/light.css" rel="stylesheet">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-
-<<<<<<< HEAD
-=======
-<script defer
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdgUFP7WNqnjlmJ0OS__3Nf9Et7aOoxnI&callback=initMap&libraries=&v=weekly"></script>
-<script>
-	let map;
-	var nlat;
-	var nlng;
-	var ndong;
-	<c:if test="${latlng ne null}">
-	nlat = "${latlng.lat}";
-	nlng = "${latlng.lng}";
-	ndong = "${latlng.dong}";
-	</c:if>
-	console.log(nlat);
-	console.log(nlng);
-	console.log(ndong);
->>>>>>> branch 'master' of https://lab.ssafy.com/yaron_e5/happyhouseproject.git
-
-<<<<<<< HEAD
-
-=======
-	function initMap() {
-		map = new google.maps.Map(document.getElementById("map"), {
-			center : {
-				lat : Number(nlat),
-				lng : Number(nlng)
-			},
-			zoom : 15
-		})
-		var myIcon = new google.maps.MarkerImage("${root}/img/drug.png", null,
-				null, null, new google.maps.Size(50, 50));
-		console.log("아작스진입");
-		$.ajax({
-			url : "${root}/house/list",
-			type : "POST",
-			data : {
-				"dong" : ndong
-			},
-			success : function(data) {
-				for (let i = 0; i < data.length; i++) {
-					console.log("반복문진입");
-					var tmp = {
-						lat : Number(data[i].lat),
-						lng : Number(data[i].lng)
-					}
-					var marker = new google.maps.Marker({
-						position : tmp,
-						icon : myIcon,
-						map : map,
-						title : data[i].AptName
-					});
-				}
-			}
-		})
-	}
-</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 
 		$(".page-item").click(function() {
-			
+
 			$("#pg").val(($(this).attr("data-pg")));
-			
+
 			$("#pageform").attr("action", "${root}/house/search").submit();
 		});
-		
 
 	});
-
 </script>
->>>>>>> branch 'master' of https://lab.ssafy.com/yaron_e5/happyhouseproject.git
 <style>
 .banner {
 	background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
@@ -106,7 +43,8 @@
 </style>
 </head>
 <body>
-	<%@include file="viewers/header.jsp"%>
+	<%@include file="viewers/header.jsp" %>
+	
 	<form name="pageform" id="pageform" method="POST" action="">
 		<input type="hidden" name="pg" id="pg" value="">
 	</form>
@@ -172,55 +110,13 @@
 			</div>
 		</div>
 
-<<<<<<< HEAD
 
-
-		<div class="row">
-			<section>
-				<aside class="col-lg-12 order-lg-1">
-					<div class="sidebar">
-						<div class="block clearfix" id="houseInfo">
-							<h3 class="title">거래 정보</h3>
-							<div class="separator-2"></div>
-
-							<c:forEach var="list" items="${houseList}" varStatus="vs">
-								<div class="media margin-clear">
-									<div class="media-body">
-										<h4>
-											<a href="${root}/house/detail?no=${list.no}">${list.aptName}</a>
-										</h4>
-										<h6 class="media-heading" id="deal">거래금액
-											:${list.dealAmount}만원</h6>
-										<h6 class="media-heading" id="deal">면적: ${list.area}</h6>
-										<p class="small margin-clear">
-											<i class="fa fa-calendar pr-10"></i>${list.dealYear}
-											(${list.dealMonth}) (${list.dealDay})
-										</p>
-									</div>
-								</div>
-								<hr>
-							</c:forEach>
-						</div>
-					</div>
-
-				</aside>
-			</section>
-
-
-			<!--지도 부분-->
-=======
 		<!--지도 부분-->
 		<div class="col-sm-8">
->>>>>>> branch 'master' of https://lab.ssafy.com/yaron_e5/happyhouseproject.git
 			<div class="container justify-content-right"
 				style="margin-top: 70px;">
 
-<<<<<<< HEAD
-				<div id="map" style="width:100%;height:350px;"></div>
-=======
-				<div id="map"
-					style="width: 800px; height: 600px; margin-left: auto; margin-right: auto;"></div>
->>>>>>> branch 'master' of https://lab.ssafy.com/yaron_e5/happyhouseproject.git
+				<div id="map" style="width: 100%; height: 350px;"></div>
 			</div>
 
 
@@ -228,98 +124,104 @@
 		</div>
 
 	</div>
+
+
 	<div class="row2">
 		<div class="col-lg-12">
 			<p>${navigation.navigator}</p>
 		</div>
-
-<<<<<<< HEAD
-
+	</div>
 
 
 
 
 
-		<footer id="footer" class="clearfix " style="margin-top: 50px;">
-			<div class="footer">
-				<div class="container">
-					<div class="footer-inner">
-						<div class="row">
-							<div class="col-md-1">
-								<div class="footer-content">
-									<img alt="" src="${root}/img/logo.png" width="100">
-								</div>
+
+
+
+	<footer id="footer" class="clearfix " style="margin-top: 50px;">
+		<div class="footer">
+			<div class="container">
+				<div class="footer-inner">
+					<div class="row">
+						<div class="col-md-1">
+							<div class="footer-content">
+								<img alt="" src="${root}/img/logo.png" width="100">
 							</div>
-							<div class="col-md-8">
-								<div class="footer-content">
-									<h2 class="title">Find Us</h2>
-									<div class="separator-2"></div>
-									<ul class="list-icons">
-										<li><i class="fa fa-map-marker pr-2 text-default"></i>(SSAFY)
-											서울시 강남구 테헤란로 멀티스퀘어</li>
-										<li><i class="fa fa-phone pr-2 text-default"></i>
-											1544-9001</li>
-										<li><a href="#"><i class="fa fa-envelope-o pr-2"></i>admin@ssafy.com</a></li>
-									</ul>
-								</div>
+						</div>
+						<div class="col-md-8">
+							<div class="footer-content">
+								<h2 class="title">Find Us</h2>
+								<div class="separator-2"></div>
+								<ul class="list-icons">
+									<li><i class="fa fa-map-marker pr-2 text-default"></i>(SSAFY)
+										서울시 강남구 테헤란로 멀티스퀘어</li>
+									<li><i class="fa fa-phone pr-2 text-default"></i>
+										1544-9001</li>
+									<li><a href="#"><i class="fa fa-envelope-o pr-2"></i>admin@ssafy.com</a></li>
+								</ul>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+		</div>
 
-			<div class="subfooter">
-				<div class="container">
-					<div class="subfooter-inner">
-						<div class="row">
-							<div class="col-md-12">
-								<p class="text-center">Copyright by SSAFY. All rights
-									reserved.</p>
-							</div>
+		<div class="subfooter">
+			<div class="container">
+				<div class="subfooter-inner">
+					<div class="row">
+						<div class="col-md-12">
+							<p class="text-center">Copyright by SSAFY. All rights
+								reserved.</p>
 						</div>
 					</div>
 				</div>
 			</div>
+		</div>
 
-		</footer>
-		<script src="${root}/js/jquery.min.js"></script>
-		<script src="${root}/js/bootstrap.bundle.min.js"></script>
-		<script src="${root}/js/popup.min.js"></script>
-		<script src="${root}/js/slick.min.js"></script>
-		<script src="${root}/js/tem.js"></script>
-		<script src="${root}/js/custom.js"></script>
+	</footer>
+	<script src="${root}/js/jquery.min.js"></script>
+	<script src="${root}/js/bootstrap.bundle.min.js"></script>
+	<script src="${root}/js/popup.min.js"></script>
+	<script src="${root}/js/slick.min.js"></script>
+	<script src="${root}/js/tem.js"></script>
+	<script src="${root}/js/custom.js"></script>
 
 
 
-		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=25135de355b0c11f7e6e55d88edc8003"></script>
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=25135de355b0c11f7e6e55d88edc8003"></script>
 
-		<script>
-		<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-		var nlat;
-		var nlng;
-		var ndong;
-		<c:if test="${latlng ne null}">
-		nlat = "${latlng.lat}";
-		nlng = "${latlng.lng}";
-		ndong = "${latlng.dong}";
-		</c:if>
-		console.log(nlat);
-		console.log(nlng);
-		console.log(ndong);
+	<script>
+				
+			<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+				var nlat;
+				var nlng;
+				var ndong;
+				<c:if test="${latlng ne null}">
+				nlat = "${latlng.lat}";
+				nlng = "${latlng.lng}";
+				ndong = "${latlng.dong}";
+				</c:if>
+				console.log(nlat);
+				console.log(nlng);
+				console.log(ndong);
 
-		var mapContainer = document.getElementById('map');
-		var mapOption = {
-			center : new kakao.maps.LatLng(Number(nlat), Number(nlng)),
-			level : 5
-		// 지도의 확대 레벨
-		};
+				var mapContainer = document.getElementById('map');
+				var mapOption = {
+					center : new kakao.maps.LatLng(Number(nlat), Number(nlng)),
+					level : 5
+				// 지도의 확대 레벨
+				};
 
-		var map = new kakao.maps.Map(mapContainer, mapOption);
-		
-		var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
-		var imageSize = new kakao.maps.Size(24, 35);
-		var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
-		
+				var map = new kakao.maps.Map(mapContainer, mapOption);
+
+				var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+				var imageSize = new kakao.maps.Size(24, 35);
+				var markerImage = new kakao.maps.MarkerImage(imageSrc,
+						imageSize);
+
 				$.ajax({
 					url : "${root}/house/list",
 					type : "POST",
@@ -330,20 +232,20 @@
 						for (let i = 0; i < data.length; i++) {
 							var tmp = {
 								tile : data[i].aptName,
-								latlng: new kakao.maps.LatLng(Number(data[i].lat), Number(data[i].lng))
+								latlng : new kakao.maps.LatLng(
+										Number(data[i].lat),
+										Number(data[i].lng))
 							}
 							var marker = new kakao.maps.Marker({
 								map : map,
-								position : tmp.latlng,						
+								position : tmp.latlng,
 								title : tmp.title,
 								image : markerImage
 							});
 						}
 					}
 				})
-		</script>
-=======
-	</div>
+			</script>
 	<%@include file="viewers/footer.jsp"%>
 	<script src="${root}/js/jquery.min.js"></script>
 	<script src="${root}/js/bootstrap.bundle.min.js"></script>
@@ -351,6 +253,5 @@
 	<script src="${root}/js/slick.min.js"></script>
 	<script src="${root}/js/tem.js"></script>
 	<script src="${root}/js/custom.js"></script>
->>>>>>> branch 'master' of https://lab.ssafy.com/yaron_e5/happyhouseproject.git
 </body>
 </html>
