@@ -21,6 +21,7 @@
 <link href="${root}/css/bt.css" rel="stylesheet">
 <link href="${root}/css/light.css" rel="stylesheet">
 
+
 <script type="text/javascript">
 	function login() {
 		if (document.getElementById("userid").value == "") {
@@ -109,6 +110,8 @@
 						<div class="col-3 col-sm-6 col-lg-9">
 							<!-- header-top-first start -->
 							<!-- ================ -->
+							<h3><a href="${root}/ ">happyhouse</a></h3>
+							
 							<div class="header-top-first clearfix"></div>
 							<!-- header-top-first end -->
 						</div>
@@ -120,7 +123,7 @@
 
 								<!-- header top dropdowns start -->
 								<!-- ================ -->
-								<div class="header-top-dropdown text-right">
+								<div class="header-top-dropdown text-right" style="padding-bottom: 5px;">
 
 
 									<c:if test="${userinfo eq null}">
@@ -222,12 +225,13 @@
 						<!-- ================ -->
 						<div class="header-first clearfix">
 
+
 							<!-- logo -->
 							<div id="logo" class="logo">
 								<a href="${root}/"><img id="logo_img"
 									src="http://edu.ssafy.com/asset/images/header-logo.jpg"
 									width='80' alt="The SSAFY"></a>
-							</div>
+
 						</div>
 					</div>
 					<div class="col-lg-10 ml-auto">
@@ -290,6 +294,7 @@
 											<span class="navbar-toggler-icon"></span>
 										</button>
 
+
 										<div class="collapse navbar-collapse" id="navbar-collapse-1">
 											<ul class="navbar-nav ml-xl-auto">
 												<li class="nav-item dropdown  mega-menu mega-menu--wide">
@@ -321,6 +326,7 @@
 											<span class="navbar-toggler-icon"></span>
 										</button>
 
+
 										<div class="collapse navbar-collapse" id="navbar-collapse-1">
 											<ul class="navbar-nav ml-xl-auto">
 												<li class="nav-item dropdown  mega-menu mega-menu--wide">
@@ -335,7 +341,7 @@
 												</li>
 												<li class="nav-item dropdown mega-menu mega-menu--wide">
 													<!-- <a href="foodBestList.do?id=n" class="nav-link dropdown-toggle" id="second-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">영양 정보</a> -->
-													<a href="/news.do?arti_id=1" class="nav-link"
+													<a href="${root }/news/list" class="nav-link"
 													id="second-dropdown" aria-haspopup="true"
 													aria-expanded="false">오늘의 뉴스</a>
 												</li>
@@ -357,6 +363,7 @@
 										</div>
 									</c:if>
 								</nav>
+
 							</div>
 						</div>
 					</div>

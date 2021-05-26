@@ -341,7 +341,7 @@
 }
 </style>
 
-
+<!-- 
 <style>
 .banner {
 	background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
@@ -350,12 +350,13 @@
 	background-size: cover;
 	height: 350px;
 }
-</style>
+</style> -->
 </head>
 <body>
 
 	<%@include file="viewers/header.jsp"%>
 	<!-- header-second end -->
+
 
 	<!--HAPPY HOUSE 행복한 우리집-->
 	<div class="banner dark-translucent-bg">
@@ -368,6 +369,7 @@
 			</div>
 		</div>
 	</div>
+
 
 
 	<!--도/광역시 시구군 동 부분-->
@@ -455,7 +457,7 @@
 
 
 	<!--지도 밑에 부분 -->
-	<div class="container" style="margin-top: 20px;">
+	<div class="container" style="margin-top: 50px;">
 		<div class="row">
 			<div class="col-md-4">
 				<img src="${root}/img/ssafy6.PNG">

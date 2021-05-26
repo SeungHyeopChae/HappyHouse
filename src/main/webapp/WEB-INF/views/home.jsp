@@ -49,10 +49,10 @@
     </div>
     <div class="cnt03"><p>함께 해보시겠어요 ?</p>
     <div class="getStart">
-    	<a href="#" class="button">시작하기</a>
+    	<a href="${root }/index" class="button">시작하기</a>
     </div>
     </div>
-    <div class="cnt04"><p>CONTENT04</p></div>
+    <div class="cnt04"><p id="lastpg">About Us</p></div>
 </div>
 </body>
 </html>
