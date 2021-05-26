@@ -257,55 +257,73 @@
 	<div class="container-fluid p-3 my-3text-white"
 		style="background-color: #707070;">
 		<div class="container p-3 my-3">
-			<div class="row justify-content-center"
-				style="background-color: #F9F9F9; height: 500px;">
-				<div class="row" style="margin-top: 20px;">
-					<h2 class="title">매물 상세</h2>
-				</div>
-				<div class="light-gray-bg border-clear" style="margin-top: 70px;">
-					<div>
-						<c:if test="${details ne null}">
-							<div class="media margin-clear">
-								<div class="media-body">
-									<h4>${details.aptName}</h4>
-									<h6 class="media-heading" id="deal">거래금액
-										:${details.dealAmount}만원</h6>
-									<h6 class="media-heading" id="deal">면적: ${details.area}</h6>
-									<p class="small margin-clear">
-										<i class="fa fa-calendar pr-10"></i>${details.dealYear}
-										(${details.dealMonth}) (${details.dealDay})
-									</p>
-								</div>
-							</div>
-							<hr>
-							<div class="container justify-content-right"
-								style="margin-top: 50px;">
 
+			<div class="bg" style="background-color: #F9F9F9; height: 500px; margin-bottom: 30px;">
+				<h2 class="title2" style="margin-top: 10px; margin-left: 10px;">매물
+					상세</h2>
+					<hr>
+
+				<div class="light-gray-bg border-clear" style="margin-top: 20px;">
+						<div>
+							<c:if test="${details ne null}">
+								<div class="media margin-clear ml-5">
+									<div class="media-body ml-5">
+										<h4>${details.aptName}</h4>
+										<h6 class="media-heading" id="deal">거래금액
+											:${details.dealAmount}만원</h6>
+										<h6 class="media-heading" id="deal">면적: ${details.area}</h6>
+										<p class="small margin-clear">
+											<i class="fa fa-calendar pr-10"></i>${details.dealYear}
+											(${details.dealMonth}) (${details.dealDay})
+										</p>
+									</div>
+								</div>
+								<hr>
+							</c:if>
+							<div class="row">
+							<div class="col-md-1"></div>
+							<div class="col-md-4">
 								<div id="map"
-									style="width: 400px; height: 200px; margin-left: auto; margin-right: auto;"></div>
-								<div>
+								 style="width: 400px; 
+								 height: 200px; 
+								 margin-left: auto; 
+								 margin-right: auto;">
+							</div>
+							<div>
 									<button type="button" class="btn btn-warning marginTop"
 										onclick="javascript:station();">지하철</button>
-										<button type="button" class="btn btn-warning marginTop"
+									<button type="button" class="btn btn-warning marginTop"
 										onclick="javascript:corona();">코로나진료소</button>
 									<button type="button" class="btn btn-warning marginTop"
 										onclick="javascript:hospital();">병원</button>
 									<button type="button" class="btn btn-warning marginTop"
 										onclick="javascript:mart();">마트</button>
 								</div>
-
-								<div class="container">
-									<canvas id="myChart"></canvas>
-								</div>
 							</div>
-						</c:if>
+							<div class="col-md-1"></div>
+							<div class="col-md-5">
+							<canvas id="myChart"></canvas>
+							</div>
+							<div class="col-md-1"></div>
+							<div class="container"
+								style="margin-top: 50px;">
+
+								
+								
+							</div>
+						</div>
+						
+						<div class="form-group lg-6">
+
+							
+
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<form id="frm" method="post" action="">
-	</form>
+	<form id="frm" method="post" action=""></form>
 	<!--하단-->
 	<%@ include file="viewers/footer.jsp"%>
 	<script src="${root}/js/jquery.min.js"></script>
@@ -384,7 +402,7 @@
 		var myChart = new Chart(ctx, {
 			type : 'bar',
 			data : {
-				labels : [ '평균 가격', '매물 가격' ],
+				labels : [ '동 평균 가격', '선택 매물 가격' ],
 				datasets : [ {
 					label : '가격',
 					data : data,

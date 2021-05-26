@@ -359,7 +359,7 @@
 
 
 	<!--HAPPY HOUSE 행복한 우리집-->
-	<div class="banner dark-translucent-bg">
+	<!--<div class="banner dark-translucent-bg">
 		<div class="container-fluid">
 			<div class="justify-content-center">
 				<h1 class=""
@@ -368,7 +368,7 @@
 				<hr>
 			</div>
 		</div>
-	</div>
+	</div>-->
 
 
 

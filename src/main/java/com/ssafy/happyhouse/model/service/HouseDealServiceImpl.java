@@ -64,7 +64,7 @@ public class HouseDealServiceImpl implements HouseDealService {
 
 	@Override
 	public PageNavigation makePageNavigationAll(Map<String, String> map) {
-		int naviSize = 10;
+		int naviSize = 5;
 		int currentPage = Integer.parseInt(map.get("pg"));	
 		int sizePerPage = Integer.parseInt(map.get("spp"));
 		PageNavigation pageNavigation = new PageNavigation();
@@ -84,7 +84,7 @@ public class HouseDealServiceImpl implements HouseDealService {
 	
 	@Override
 	public PageNavigation makePageNavigationDong(Map<String, String> map) {
-		int naviSize = 10;
+		int naviSize = 5;
 		int currentPage = Integer.parseInt(map.get("pg") == null ? "1" : map.get("pg"));	
 		int sizePerPage = Integer.parseInt(map.get("spp"));
 		PageNavigation pageNavigation = new PageNavigation();

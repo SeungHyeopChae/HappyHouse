@@ -43,7 +43,7 @@ public class HouseDealController {
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
 	public String search(@RequestParam Map<String, String> map, Model model)
 	{
-		String spp = map.get("spp");
+		String spp = "5";
 		map.put("spp", spp != null ? spp : "10");//sizePerPage
 		String code = map.get("word");
 		System.out.println(map.get("pg"));

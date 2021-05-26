@@ -169,6 +169,9 @@ $(document).ready(function() {
 .marginTop {
 	margin-top: 10px;
 }
+canvas {
+	width: 80px;
+}
 </style>
 </head>
 <body>
@@ -186,6 +189,7 @@ $(document).ready(function() {
 	<div class="container-fluid p-3 my-3text-white"
 		style="background-color: #707070;">
 		<div class="container p-3 my-3">
+		
 			<div class="bg" style="background-color: #F9F9F9; height: 500px;">
 				<hr>
 				<div class="title">
@@ -255,14 +259,16 @@ $(document).ready(function() {
 
 					</form>
 					<div class="row">
-						<div class="col-lg-12">
+						<div class="col-lg-6">
 							<div id="demo" style="width: 550px; height: 300px; border: 1px"></div>
 						</div>
+						<div class="col-lg-5 mt-4">
+							<canvas id="myChart"></canvas>
+						</div>
+						<div class="col-lg-1">
+							<canvas id="myChart"></canvas>
+						</div>
 					</div>
-					<div class="container">
-						<canvas id="myChart"></canvas>
-					</div>
-
 				</div>
 			</div>
 		</div>
