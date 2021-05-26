@@ -15,7 +15,7 @@ public interface HouseDealMapper {
 	
 	List<HouseDealDto> listall(Map<String, Object> param);
 	
-	int getTotalCountAll(Map<String, String> map);
+	int getTotalCountAll();
 	int getTotalCountDong(Map<String, String> map);
 	
 	HouseDealDto detail(int no);

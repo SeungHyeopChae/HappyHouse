@@ -74,8 +74,9 @@
 		document.location.href = "${root}/member/regist";
 	}
 	function search() {
-		document.getElementById("frm").action = "${root}/house/search?dong="+ document.getElementById("dong").value+"&pg=1";
+		document.getElementById("frm").action = "${root}/house/search?pg=1&key=dong&word="+$("#dong").val();
 		document.getElementById("frm").submit();
+
 	}
 	function searchlike() {
 		document.location.href = "${root}/main?act=listlike" ;

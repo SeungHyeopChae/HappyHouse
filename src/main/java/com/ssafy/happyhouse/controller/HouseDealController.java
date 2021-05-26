@@ -25,47 +25,39 @@ import com.ssafy.happyhouse.util.PageNavigation;
 @Controller
 @RequestMapping("/house")
 public class HouseDealController {
-	
+
 	@Autowired 
 	private HouseDealService houseDealService;
-	
+
 	@Autowired 
 	private AddressService addressService;
-	
+
 	@Autowired 
 	private HouseInfoService houseInfoService;
-	
+
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
-	public String search(@RequestParam Map<String, String> map, String dong, Model model)
+	public String search(@RequestParam Map<String, String> map, Model model)
 	{
-		String pg = map.get("pg");
-		String spp = "5";
-		map.put("spp", spp != null ? spp : "5");
-//		System.out.println("dong : " + dong);
-		System.out.println(map.get("dong"));
-		
-//		String code = dong.split(",")[0];
-		
-		String code = map.get("dong");
-		
+		String spp = map.get("spp");
+		map.put("spp", spp != null ? spp : "10");//sizePerPage
+		String code = map.get("word");
+		System.out.println(map.get("pg"));
+		System.out.println(code);
 		try {
 			List<HouseDealDto> list;
 			AddressDto latlng;
 			PageNavigation pageNavigation;
-			System.out.println(code);
-			
-			if(code.equals("all")) {
-				pageNavigation = houseDealService.makePageNavigationAll(map);
+
+			if(code.equals("all") || code.equals("")) {
 				list = houseDealService.listall(map);
-				System.out.println("get listall");
-				
+				pageNavigation = houseDealService.makePageNavigationAll(map);
 				latlng = new AddressDto();
 				latlng.setLat("37.5013068");
 				latlng.setLng("127.037471");
 			}
 			else {
-				pageNavigation = houseDealService.makePageNavigationDong(map);
 				list = houseDealService.listhouse(map);
+				pageNavigation = houseDealService.makePageNavigationDong(map);
 				latlng = addressService.getLatLng(code);
 			}
 			model.addAttribute("houseList", list);
@@ -79,33 +71,40 @@ public class HouseDealController {
 			return "error/404";
 		}
 	}
-	
+
+
+
+
 	@RequestMapping(value = "/list", method = RequestMethod.POST)
 	public @ResponseBody List<HouseInfoDto> dong(@RequestParam("dong") String dong, Model model, HttpServletResponse response) {
 		System.out.println("리스트 얻기");
-		List<HouseInfoDto> list = houseInfoService.getList(dong);
+		List<HouseInfoDto> list;
+		if(dong.equals("")) {
+			list = houseInfoService.getAll();
+		}
+		else list = houseInfoService.getList(dong);
 		return list;
 	}
-	
+
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
 	public String viewdetail(@RequestParam("no") int no, Model model) {
-			try {
-				System.out.println(no);
-				HouseDealDto houseDetail = houseDealService.detail(no);
-				HouseInfoDto houseInfo = houseInfoService.getDetail(houseDetail.getAptName(),houseDetail.getBuildYear(), houseDetail.getDong());
-				int amount = houseDealService.avgAmount(houseDetail.getDong());
-				model.addAttribute("details", houseDetail);
-				model.addAttribute("infos", houseInfo);
-				model.addAttribute("amount", amount);
-				return "house";
-			} catch(Exception e) {
-				e.printStackTrace();
-				model.addAttribute("msg", "상세정보를 얻어오는 중 문제가 발생했습니다.");
-				return "error/404";
-			}
+		try {
+			System.out.println(no);
+			HouseDealDto houseDetail = houseDealService.detail(no);
+			HouseInfoDto houseInfo = houseInfoService.getDetail(houseDetail.getAptName(),houseDetail.getBuildYear(), houseDetail.getDong());
+			int amount = houseDealService.avgAmount(houseDetail.getDong());
+			model.addAttribute("details", houseDetail);
+			model.addAttribute("infos", houseInfo);
+			model.addAttribute("amount", amount);
+			return "house";
+		} catch(Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", "상세정보를 얻어오는 중 문제가 발생했습니다.");
+			return "error/404";
+		}
 	}
-	
-	
-	
+
+
+
 
 }

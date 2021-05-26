@@ -43,11 +43,14 @@
 </style>
 </head>
 <body>
+	<form name="pageform" id="pageform" method="post" action="">
+		<input type="hidden" name="pg" id="pg" value="">
+		<input type="hidden" name="key" id="key" value="dong">
+		<input type="hidden" name="word" id="word" value="${latlng.dong}">
+	</form>
 	<%@include file="viewers/header.jsp" %>
 	
-	<form name="pageform" id="pageform" method="POST" action="">
-		<input type="hidden" name="pg" id="pg" value="">
-	</form>
+	
 
 	<!--HAPPY HOUSE 행복한 우리집-->
 	<div class="banner dark-translucent-bg">
@@ -70,6 +73,7 @@
 			<div class="sidebar">
 
 				<div class="block clearfix" id="houseInfo">
+				<input type="hidden" name="pg" id="pg" value="1">
 					<table>
 						<tr>
 							<td>
