@@ -136,7 +136,7 @@
     </script>
    
 
-
+<!-- 
 <style>
 .banner {
 	background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
@@ -145,7 +145,7 @@
 	background-size: cover;
 	height: 350px;
 }
-</style>
+</style> -->
 </head>
 <body>
 
@@ -153,7 +153,7 @@
 			<!-- header-second end -->
 
 		<!--HAPPY HOUSE 행복한 우리집-->
-		<div class="banner dark-translucent-bg">
+<!-- 		<div class="banner dark-translucent-bg">
 			<div class="container-fluid">
 				<div class="justify-content-center">
 					<h1 class=""
@@ -163,7 +163,7 @@
 					<p style="text-align: center; color: white;">행복한 우리집</p>
 				</div>
 			</div>
-		</div>
+		</div> -->
 
 
 		<!--도/광역시 시구군 동 부분-->
@@ -234,7 +234,7 @@
 
 
 	<!--지도 밑에 부분 -->
-	<div class="container" style="margin-top: 20px;">
+	<div class="container" style="margin-top: 50px;">
 		<div class="row">
 			<div class="col-md-4">
 				<img src="${root}/img/sideAD.jpg">

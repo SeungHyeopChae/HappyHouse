@@ -59,7 +59,7 @@ pageContext.setAttribute("user", user);
 		<input type="hidden" name="pg" id="pg" value="">  
 	</form>
 	<section class="page-section" id="contact">
-		<div class="container">
+		<div class="container mt-5">
 			<h2
 				class="page-section-heading text-center text-uppercase text-secondary mb-0">Notice</h2>
 			<!-- Contact Section Heading-->

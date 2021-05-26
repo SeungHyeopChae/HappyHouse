@@ -20,6 +20,40 @@
 <link href="${root}/css/typography-default.css" rel="stylesheet">
 <link href="${root}/css/bt.css" rel="stylesheet">
 <link href="${root}/css/light.css" rel="stylesheet">
+<script type="text/javascript">
+	
+
+	function login() {
+		if (document.getElementById("userid").value == "") {
+			alert("아이디 입력!!!");
+			return;
+		} else if (document.getElementById("userpwd").value == "") {
+			alert("비밀번호 입력!!!");
+			return;
+		} else {
+			
+			document.getElementById("loginform").action = "${root}/member/login";
+			document.getElementById("loginform").submit();
+		}
+	}
+
+	function moveJoin() {
+		alert("회원가입")
+		document.location.href = "${root}/member/regist";
+	}
+	function search() {
+		document.getElementById("frm").action = "${root}/house/search?dong="+ document.getElementById("dong").value+"&pg=1";
+		document.getElementById("frm").submit();
+	}
+	function searchlike() {
+		document.location.href = "${root}/main?act=listlike" ;
+	}
+	
+	function deleteMember() {
+		alert("탈퇴하시겠습니까?");
+		document.location.href = "${root}/member/delete" ;
+	}
+</script>
 <style>
 .inputType {
 	border-radius: 10px;
@@ -56,6 +90,8 @@
 						<div class="col-3 col-sm-6 col-lg-9">
 							<!-- header-top-first start -->
 							<!-- ================ -->
+							<a href="${root}/index "><h3>happyhouse</h3></a>
+							
 							<div class="header-top-first clearfix"></div>
 							<!-- header-top-first end -->
 						</div>
@@ -67,7 +103,7 @@
 
 								<!-- header top dropdowns start -->
 								<!-- ================ -->
-								<div class="header-top-dropdown text-right">
+								<div class="header-top-dropdown text-right" style="padding-bottom: 5px;">
 
 
 									<c:if test="${userinfo eq null}">
@@ -168,7 +204,7 @@
 
 								<!-- logo -->
 								<div id="logo" class="logo">
-									<a href="${root}/"><img id="logo_img"
+									<a href="${root}/index"><img id="logo_img"
 										src="http://edu.ssafy.com/asset/images/header-logo.jpg"
 										width='80' alt="The SSAFY"></a>
 								</div>
@@ -244,7 +280,7 @@
 													</li>
 													<li class="nav-item dropdown mega-menu mega-menu--wide">
 														<!-- <a href="foodBestList.do?id=n" class="nav-link dropdown-toggle" id="second-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">영양 정보</a> -->
-														<a href="/news.do?arti_id=1" class="nav-link"
+														<a href="${root }/news/list" class="nav-link"
 														id="second-dropdown" aria-haspopup="true"
 														aria-expanded="false">오늘의 뉴스</a>
 													</li>
@@ -270,7 +306,7 @@
 													</li>
 													<li class="nav-item dropdown mega-menu mega-menu--wide">
 														<!-- <a href="foodBestList.do?id=n" class="nav-link dropdown-toggle" id="second-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">영양 정보</a> -->
-														<a href="/news.do?arti_id=1" class="nav-link"
+														<a href="${root }/news/list" class="nav-link"
 														id="second-dropdown" aria-haspopup="true"
 														aria-expanded="false">오늘의 뉴스</a>
 													</li>
