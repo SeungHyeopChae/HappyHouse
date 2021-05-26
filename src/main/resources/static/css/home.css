@@ -1,5 +1,8 @@
 @charset "UTF-8";
 *{margin:0;padding:0}
+h4{
+	color: #d1d1d1;
+}
 html, body{overflow-y:hidden}
 ul, ol{list-style:none}
 .header{position:fixed;z-index:10;top:0;width:100%}
@@ -10,7 +13,7 @@ ul, ol{list-style:none}
 .header ul li.on a{background-color:#fff;color:#000}
 .content{}
 .content div{position:relative}
-.content div p{position:absolute;top:13%;margin-top:-40px;text-align:center;width:100%;font-size:65px;font-family: 'Nanum Pen Script', cursive; color:black}
+.content div p{position:absolute;top:12%;margin-top:-40px;text-align:center;width:100%;font-size:70px;font-family: 'Nanum Pen Script', cursive; color:black}
 .content  #lastpg{
 	position:absolute;top:13%;margin-top:-40px;text-align:center;width:100%;font-size:65px;font-family: 'Nanum Pen Script', cursive;color:#bdbdbd
 }
@@ -114,4 +117,31 @@ transform: translateY(-15px);
 .getStart a.button:hover {
 	color: rgba(255, 255, 255, 0.85);
 	box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 40px inset;
+}
+#myCarousel{
+	padding-top:14%;
+	padding-left:30%;
+}
+.carousel{
+
+	height:100%;
+	position: absolute;
+}
+.carousel-inner{
+	align: center;
+}
+.carousel-inner img{
+		max-height: 50vh;
+		min-height: 50vh;
+		max-width: 50vh;
+		min-width: 50vh;
+		width:60%;
+}
+#intro{
+	padding-left:10px;
+	padding-top:15%;
+}
+#jaypic{
+	margin-bottom:10%;
+	
 }

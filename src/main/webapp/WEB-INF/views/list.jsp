@@ -281,6 +281,10 @@
 .row2 {
 	margin-left: 150px;
 }
+
+#houseInfo{
+	margin-top:20px;
+}
 </style>
 </head>
 <body>
