@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ssafy.happyhouse.model.AddressDto;
+import com.ssafy.happyhouse.model.HospitalDto;
 import com.ssafy.happyhouse.model.HouseDealDto;
 import com.ssafy.happyhouse.model.HouseInfoDto;
 import com.ssafy.happyhouse.model.service.AddressService;
+import com.ssafy.happyhouse.model.service.HospitalService;
 import com.ssafy.happyhouse.model.service.HouseDealService;
 import com.ssafy.happyhouse.model.service.HouseInfoService;
 import com.ssafy.happyhouse.util.PageNavigation;
@@ -34,6 +36,9 @@ public class HouseDealController {
 
 	@Autowired 
 	private HouseInfoService houseInfoService;
+	
+	@Autowired 
+	private HospitalService hospitalService;
 
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
 	public String search(@RequestParam Map<String, String> map, Model model)
@@ -91,11 +96,13 @@ public class HouseDealController {
 		try {
 			System.out.println(no);
 			HouseDealDto houseDetail = houseDealService.detail(no);
+			List<HospitalDto> hoslist = hospitalService.getHospital(no);
 			HouseInfoDto houseInfo = houseInfoService.getDetail(houseDetail.getAptName(),houseDetail.getBuildYear(), houseDetail.getDong());
 			int amount = houseDealService.avgAmount(houseDetail.getDong());
 			model.addAttribute("details", houseDetail);
 			model.addAttribute("infos", houseInfo);
 			model.addAttribute("amount", amount);
+			model.addAttribute("hospital", hoslist);
 			return "house";
 		} catch(Exception e) {
 			e.printStackTrace();

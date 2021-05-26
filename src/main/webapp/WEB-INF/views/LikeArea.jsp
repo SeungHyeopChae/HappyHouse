@@ -25,9 +25,11 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://d3js.org/d3.v3.min.js"></script>
-    <script src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js" type="text/JavaScript"></script>
+<script
+	src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js"
+	type="text/JavaScript"></script>
 
-
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script type="text/javascript">
 $(document).ready(function() {
 	$.ajax({
@@ -35,10 +37,14 @@ $(document).ready(function() {
 		type : "GET",
 		success : function(data) { //DB접근 후 가져온 데이터
 			var word_list = [];
+			var tx = [];
+			var we = [];
 			for(var i = 0; i < data.length; i++) {
 				var wc = new Object();
 				wc.text = data[i].text;
+				tx.push(wc.text);
 				wc.weight = data[i].weight;
+				we.push(Number(wc.weight));
 				word_list.push(wc);
 			}
 			$("#demo").empty();
@@ -46,6 +52,37 @@ $(document).ready(function() {
               autoResize: true,
               delay: 50
             });
+            var ctx = document.getElementById('myChart');
+    		var myChart = new Chart(ctx, {
+    			type : 'doughnut',
+    			data : {
+    				labels : tx,
+    				datasets : [ {
+    					label : "# of Votes",
+    					data : we,
+    					backgroundColor : [ "rgba(255, 99, 132, 0.2)",
+    		                  "rgba(54, 162, 235, 0.2)",
+    		                  "rgba(255, 206, 86, 0.2)",
+    		                  "rgba(75, 192, 192, 0.2)",
+    		                  "rgba(153, 102, 255, 0.2)"],
+    					borderColor : [ "rgba(255, 99, 132, 1)",
+    		                  "rgba(54, 162, 235, 1)",
+    		                  "rgba(255, 206, 86, 1)",
+    		                  "rgba(75, 192, 192, 1)",
+    		                  "rgba(153, 102, 255, 1)" ],
+    					borderWidth : 1
+    				} ]
+    			},
+    			options : {
+    				scales : {
+    					yAxes : [ {
+    						ticks : {
+    							beginAtZero : true
+    						}
+    					} ]
+    				}
+    			}
+    		});
 		}
 	})
 });
@@ -149,16 +186,17 @@ $(document).ready(function() {
 	<div class="container-fluid p-3 my-3text-white"
 		style="background-color: #707070;">
 		<div class="container p-3 my-3">
-			<div class="bg"
-				style="background-color: #F9F9F9; height: 500px;">
+			<div class="bg" style="background-color: #F9F9F9; height: 500px;">
 				<hr>
-				<div class="title" >
-					<h2 class="title2" style="margin-top:10px; margin-left:10px;">관심지역을 설정해보세요 !</h2>
+				<div class="title">
+					<h2 class="title2" style="margin-top: 10px; margin-left: 10px;">관심지역을
+						설정해보세요 !</h2>
 				</div>
 				<div class="light-gray-bg border-clear" style="margin-top: 20px;">
 					<form class="form-inline" id="frm" action="" method="post">
 						<div class="form-group md">
-							<select class="form-control" style="margin-left:10px;"name="city" id="city">
+							<select class="form-control" style="margin-left: 10px;"
+								name="city" id="city">
 								<c:if test="${gugunlist eq null}">
 									<option value="all">도/광역시</option>
 									<option value="서울특별시">서울시</option>
@@ -188,8 +226,8 @@ $(document).ready(function() {
 							<select class="form-control" name="gugun" id="gu">
 								<c:if test="${donglist eq null}">
 									<option value="all">시/구/군</option>
-									<c:forEach var="guguns" items="${gugunlist}" varStatus="status"> 
-										<option value="${guguns.gugun}">${guguns.gugun}</option>  
+									<c:forEach var="guguns" items="${gugunlist}" varStatus="status">
+										<option value="${guguns.gugun}">${guguns.gugun}</option>
 									</c:forEach>
 								</c:if>
 								<c:if test="${donglist ne null }">
@@ -207,9 +245,9 @@ $(document).ready(function() {
 							</select>
 
 						</div>
-						
+
 						<div>
-							
+
 							<button type="button" id="regiarea"
 								class="btn btn-warning marginTop ml-1"
 								onclick="javascript:insertLikeArea();">등록 ✔</button>
@@ -218,12 +256,13 @@ $(document).ready(function() {
 					</form>
 					<div class="row">
 						<div class="col-lg-12">
-					<div id="demo"
-							style="width: 550px; height: 300px; border: 1px "></div>
+							<div id="demo" style="width: 550px; height: 300px; border: 1px"></div>
+						</div>
 					</div>
-				</div>
-					
-					
+					<div class="container">
+						<canvas id="myChart"></canvas>
+					</div>
+
 				</div>
 			</div>
 		</div>

@@ -1,5 +1,8 @@
 package com.ssafy.happyhouse.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -9,7 +12,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ssafy.happyhouse.model.AddressDto;
 import com.ssafy.happyhouse.model.LikeAreaDto;
 import com.ssafy.happyhouse.model.MemberDto;
 import com.ssafy.happyhouse.model.service.LikeAreaService;
@@ -48,6 +54,12 @@ public class LikeAreaController {
 			model.addAttribute("msg", "관심지역중  문제가 발생했습니다.");
 			return "error/404";
 		}
+	}
+	
+	@RequestMapping(value = "/search", method = RequestMethod.POST)
+	public @ResponseBody LikeAreaDto search(@RequestParam("userid") String userid, Model model, HttpServletResponse response) {	
+		LikeAreaDto like = likeAreaService.getLikeArea(userid);
+		return like;
 	}
 	
 	
