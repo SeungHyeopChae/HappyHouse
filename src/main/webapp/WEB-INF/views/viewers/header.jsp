@@ -284,6 +284,12 @@
 														id="second-dropdown" aria-haspopup="true"
 														aria-expanded="false">오늘의 뉴스</a>
 													</li>
+													<li class="nav-item dropdown mega-menu mega-menu--wide">
+														<!-- <a href="foodBestList.do?id=n" class="nav-link dropdown-toggle" id="second-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">영양 정보</a> -->
+														<a href="${root }/bd" class="nav-link"
+														id="second-dropdown" aria-haspopup="true"
+														aria-expanded="false">Q&A</a>
+													</li>
 												</ul>
 												<!-- main-menu end -->
 											</div>
@@ -327,6 +333,12 @@
 														<a class="nav-link"
 														id="second-dropdown" aria-haspopup="true"
 														aria-expanded="false" onclick="javascript:searchlike();">관심지역 둘러보기</a>
+													</li>
+													<li class="nav-item dropdown mega-menu mega-menu--wide">
+														<!-- <a href="foodBestList.do?id=n" class="nav-link dropdown-toggle" id="second-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">영양 정보</a> -->
+														<a href="${root }/bd" class="nav-link"
+														id="second-dropdown" aria-haspopup="true"
+														aria-expanded="false">Q&A</a>
 													</li>
 												</ul>
 												<!-- main-menu end -->
