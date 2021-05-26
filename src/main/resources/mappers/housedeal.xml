@@ -7,7 +7,11 @@
    <select id="listhouse" parameterType="map" resultType="HouseDealDto">
       select *
       from housedeal
-      where dong= #{dong}
+      <if test="word != null and word != ''">
+      	<if test="key == 'dong'">
+				where dong= #{word}
+	  	</if>
+	  </if>
       order by no
       limit #{start}, #{spp}
    </select>
@@ -26,7 +30,7 @@
    </select>
    
 
-   <select id="getTotalCountAll" parameterType="map" resultType="int">
+   <select id="getTotalCountAll" resultType="int">
    		select count(no)
    		from housedeal
    </select>
@@ -34,7 +38,9 @@
    <select id="getTotalCountDong" parameterType="map" resultType="int">
    		select count(no)
    		from housedeal
-   		where dong = #{dong}
+   		<if test="key == 'dong'">
+			where dong= #{word}
+		</if>
    </select>
    
 
@@ -42,6 +48,12 @@
       select *
       from housedeal
       where no= #{no}
+   </select>
+   
+   <select id="avgAmount" parameterType="String" resultType="int">
+   		select convert(AVG(REPLACE(dealAmount, ',','')), signed integer) as price
+		from housedeal
+		where dong= #{dong};
    </select>
 
 </mapper>

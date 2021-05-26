@@ -11,6 +11,15 @@ public class PageNavigation {
 	private int naviSize;
 	private int countPerPage;
 	private String navigator;
+	
+	
+
+	@Override
+	public String toString() {
+		return "PageNavigation [startRange=" + startRange + ", endRange=" + endRange + ", totalCount=" + totalCount
+				+ ", newCount=" + newCount + ", totalPageCount=" + totalPageCount + ", currentPage=" + currentPage
+				+ ", naviSize=" + naviSize + ", countPerPage=" + countPerPage + ", navigator=" + navigator + "]";
+	}
 
 	public boolean isStartRange() {
 		return startRange;

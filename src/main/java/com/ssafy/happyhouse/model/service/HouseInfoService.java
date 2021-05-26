@@ -7,6 +7,7 @@ import com.ssafy.happyhouse.model.HouseInfoDto;
 public interface HouseInfoService {
 	
 	List<HouseInfoDto> getList(String dong);
-	HouseInfoDto getDetail(String aptName, String buildYear);
+	List<HouseInfoDto> getAll();
+	HouseInfoDto getDetail(String aptName, String buildYear, String dong);
 
 }

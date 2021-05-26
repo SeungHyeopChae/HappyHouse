@@ -17,5 +17,7 @@ public interface HouseDealService {
 	public List<HouseDealDto> listhouse(Map<String, String> map);
 
 	HouseDealDto detail(int no);
+	
+	int avgAmount(String dong);
 
 }
