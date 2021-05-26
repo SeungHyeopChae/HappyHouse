@@ -110,7 +110,7 @@
 						<div class="col-3 col-sm-6 col-lg-9">
 							<!-- header-top-first start -->
 							<!-- ================ -->
-							<h3><a href="${root}/ ">happyhouse</a></h3>
+							<h3><a href="${root}/index ">happyhouse</a></h3>
 							
 							<div class="header-top-first clearfix"></div>
 							<!-- header-top-first end -->
@@ -228,11 +228,12 @@
 
 							<!-- logo -->
 							<div id="logo" class="logo">
-								<a href="${root}/"><img id="logo_img"
+								<a href="${root}/index"><img id="logo_img"
 									src="http://edu.ssafy.com/asset/images/header-logo.jpg"
 									width='80' alt="The SSAFY"></a>
 
 						</div>
+					</div>
 					</div>
 					<div class="col-lg-10 ml-auto">
 
@@ -309,7 +310,7 @@
 												</li>
 												<li class="nav-item dropdown mega-menu mega-menu--wide">
 													<!-- <a href="foodBestList.do?id=n" class="nav-link dropdown-toggle" id="second-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">영양 정보</a> -->
-													<a href="/news.do?arti_id=1" class="nav-link"
+													<a href="${root }/news/list" class="nav-link"
 													id="second-dropdown" aria-haspopup="true"
 													aria-expanded="false">오늘의 뉴스</a>
 												</li>
