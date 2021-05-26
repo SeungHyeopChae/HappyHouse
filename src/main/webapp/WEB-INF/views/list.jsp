@@ -281,6 +281,10 @@
 .row2 {
 	margin-left: 150px;
 }
+
+#houseInfo{
+	margin-top:20px;
+}
 </style>
 </head>
 <body>
@@ -626,7 +630,6 @@
 			placeOverlay.setMap(map);
 		}
 
-<<<<<<< HEAD
 		// 각 카테고리에 클릭 이벤트를 등록합니다
 		function addCategoryClickEvent() {
 			var category = document.getElementById('category'), children = category.children;
