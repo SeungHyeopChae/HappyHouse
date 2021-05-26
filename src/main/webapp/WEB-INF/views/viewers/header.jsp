@@ -228,9 +228,9 @@
 
 							<!-- logo -->
 							<div id="logo" class="logo">
-								<a href="${root}/index"><img id="logo_img"
+								<img id="logo_img"
 									src="http://edu.ssafy.com/asset/images/header-logo.jpg"
-									width='80' alt="The SSAFY"></a>
+									width='80' alt="The SSAFY">
 
 						</div>
 					</div>
@@ -252,9 +252,9 @@
 
 										<!-- logo -->
 										<div id="logo-mobile" class="logo">
-											<a href="${root}/"><img id="logo-img-mobile"
+											<img id="logo-img-mobile"
 												src="http://edu.ssafy.com/asset/images/header-logo.jpg"
-												width='150' alt="The SSAFY"></a>
+												width='150' alt="The SSAFY">
 
 										</div>
 
