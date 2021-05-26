@@ -26,7 +26,6 @@ public class HouseDealServiceImpl implements HouseDealService {
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("key", map.get("key") == null ? "" : map.get("key"));
 		param.put("word", map.get("word") == null ? "" : map.get("word"));
-		param.put("dong", map.get("dong") == null ? "" : map.get("dong"));
 		int currentPage = Integer.parseInt(map.get("pg"));
 		int sizePerPage = Integer.parseInt(map.get("spp"));
 		int start = (currentPage - 1) * sizePerPage;

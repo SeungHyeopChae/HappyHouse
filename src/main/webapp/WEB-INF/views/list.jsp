@@ -287,7 +287,12 @@
 
 	
 	<%@include file="viewers/header.jsp" %>
-	
+<form name="pageform" id="pageform" method="post" action="">
+		<input type="hidden" name="pg" id="pg" value="">
+		<input type="hidden" name="key" id="key" value="dong">
+		<input type="hidden" name="word" id="word" value="${latlng.dong}">
+
+	</form>
 
 	
 <div class="text-center d-flex justify-content-center bg-dark">
@@ -626,7 +631,7 @@
 			placeOverlay.setMap(map);
 		}
 
-<<<<<<< HEAD
+
 		// 각 카테고리에 클릭 이벤트를 등록합니다
 		function addCategoryClickEvent() {
 			var category = document.getElementById('category'), children = category.children;
@@ -668,12 +673,7 @@
 	</script>
 
 				
-		<form name="pageform" id="pageform" method="post" action="">
-		<input type="hidden" name="pg" id="pg" value="">
-		<input type="hidden" name="key" id="key" value="dong">
-		<input type="hidden" name="word" id="word" value="${latlng.dong}">
-
-	</form>
+		
 	<%@include file="viewers/footer.jsp"%>
 	<script src="${root}/js/jquery.min.js"></script>
 	<script src="${root}/js/bootstrap.bundle.min.js"></script>
