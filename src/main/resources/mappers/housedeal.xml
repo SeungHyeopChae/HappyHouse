@@ -35,5 +35,11 @@
       from housedeal
       where no= #{no}
    </select>
+   
+   <select id="avgAmount" parameterType="String" resultType="int">
+   		select convert(AVG(REPLACE(dealAmount, ',','')), signed integer) as price
+		from housedeal
+		where dong= #{dong};
+   </select>
 
 </mapper>

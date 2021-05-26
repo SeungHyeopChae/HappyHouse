@@ -12,7 +12,7 @@
    <select id="getDetail" resultType="HouseInfoDto">
       select *
       from houseinfo
-      where aptName= #{aptName} AND buildYear= #{buildYear}
+      where aptName= #{aptName} AND buildYear= #{buildYear} AND dong= #{dong}
    </select>
    
 </mapper>

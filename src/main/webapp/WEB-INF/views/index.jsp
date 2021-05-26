@@ -288,7 +288,7 @@
 		var mapContainer = document.getElementById('map');
 		var mapOption = { 
         		center: new kakao.maps.LatLng(36.107238, 128.415105),
-        		level: 3 // 지도의 확대 레벨
+        		level: 4 // 지도의 확대 레벨
     	};
 
 		var map = new kakao.maps.Map(mapContainer, mapOption); 

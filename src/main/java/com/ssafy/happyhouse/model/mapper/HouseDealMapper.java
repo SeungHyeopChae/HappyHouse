@@ -18,5 +18,7 @@ public interface HouseDealMapper {
 	int getTotalCount(Map<String, String> map);
 	
 	HouseDealDto detail(int no);
+	
+	int avgAmount(String dong);
 
 }

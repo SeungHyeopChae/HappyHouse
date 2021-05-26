@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,8 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.ssafy.happyhouse.model.AddressDto;
 import com.ssafy.happyhouse.model.HouseDealDto;
 import com.ssafy.happyhouse.model.HouseInfoDto;
-import com.ssafy.happyhouse.model.MemberDto;
-import com.ssafy.happyhouse.model.NoticeDto;
 import com.ssafy.happyhouse.model.service.AddressService;
 import com.ssafy.happyhouse.model.service.HouseDealService;
 import com.ssafy.happyhouse.model.service.HouseInfoService;
@@ -81,13 +78,15 @@ public class HouseDealController {
 	}
 	
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
-	public String detail(@RequestParam("no") int no, Model model) {
+	public String viewdetail(@RequestParam("no") int no, Model model) {
 			try {
 				System.out.println(no);
 				HouseDealDto houseDetail = houseDealService.detail(no);
-				HouseInfoDto houseInfo = houseInfoService.getDetail(houseDetail.getAptName(),houseDetail.getBuildYear());
+				HouseInfoDto houseInfo = houseInfoService.getDetail(houseDetail.getAptName(),houseDetail.getBuildYear(), houseDetail.getDong());
+				int amount = houseDealService.avgAmount(houseDetail.getDong());
 				model.addAttribute("details", houseDetail);
 				model.addAttribute("infos", houseInfo);
+				model.addAttribute("amount", amount);
 				return "house";
 			} catch(Exception e) {
 				e.printStackTrace();

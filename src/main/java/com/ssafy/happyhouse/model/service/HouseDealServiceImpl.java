@@ -66,6 +66,11 @@ public class HouseDealServiceImpl implements HouseDealService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public int avgAmount(String dong) {
+		return houseDealMapper.avgAmount(dong);
+	}
 	
 	
 
