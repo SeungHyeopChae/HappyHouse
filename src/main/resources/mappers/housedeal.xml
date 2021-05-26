@@ -6,8 +6,10 @@
 
    <select id="listhouse" parameterType="map" resultType="HouseDealDto">
       select *
-      from housedeal 
-      where dong= #{key}
+      from housedeal
+      where dong= #{dong}
+      order by no
+      limit #{start}, #{spp}
    </select>
    
    <select id="listlike" parameterType="String" resultType="HouseDealDto">
@@ -16,7 +18,7 @@
       where dong = (select dong from LikeArea where userid=#{key})
    </select>
    
-   <select id="listall" resultType="HouseDealDto">
+   <select id="listall" parameterType="map" resultType="HouseDealDto">
       select *
       from housedeal
       order by no
@@ -24,9 +26,15 @@
    </select>
    
 
-   <select id="getTotalCount" parameterType="map" resultType="int">
+   <select id="getTotalCountAll" parameterType="map" resultType="int">
    		select count(no)
    		from housedeal
+   </select>
+   
+   <select id="getTotalCountDong" parameterType="map" resultType="int">
+   		select count(no)
+   		from housedeal
+   		where dong = #{dong}
    </select>
    
 

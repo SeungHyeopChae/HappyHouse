@@ -39,32 +39,42 @@ public class HouseDealController {
 	private HouseInfoService houseInfoService;
 	
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
-	public String search(@RequestParam Map<String, String> map, String dong,  Model model)
+	public String search(@RequestParam Map<String, String> map, String dong, Model model)
 	{
 		String pg = map.get("pg");
-		String spp = map.get("spp");
-		map.put("spp", spp != null ? spp : "10");
+		String spp = "5";
+		map.put("spp", spp != null ? spp : "5");
+//		System.out.println("dong : " + dong);
+		System.out.println(map.get("dong"));
 		
-		String code = dong.split(",")[0];
-//		String code = map.get("dong").split(",")[0];
+//		String code = dong.split(",")[0];
+		
+		String code = map.get("dong");
+		
 		try {
 			List<HouseDealDto> list;
 			AddressDto latlng;
-			PageNavigation pageNavigation = houseDealService.makePageNavigation(map);
+			PageNavigation pageNavigation;
+			System.out.println(code);
+			
 			if(code.equals("all")) {
+				pageNavigation = houseDealService.makePageNavigationAll(map);
 				list = houseDealService.listall(map);
+				System.out.println("get listall");
 				
 				latlng = new AddressDto();
 				latlng.setLat("37.5013068");
 				latlng.setLng("127.037471");
 			}
 			else {
-				list = houseDealService.listhouse(code);
+				pageNavigation = houseDealService.makePageNavigationDong(map);
+				list = houseDealService.listhouse(map);
 				latlng = addressService.getLatLng(code);
 			}
 			model.addAttribute("houseList", list);
 			model.addAttribute("navigation", pageNavigation);
 			model.addAttribute("latlng", latlng);
+			System.out.println("생성");
 			return "list";
 		} catch (Exception e) {
 			e.printStackTrace();

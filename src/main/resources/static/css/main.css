@@ -1,0 +1,266 @@
+#ahome{
+    color: white;
+    text-decoration: none;
+    font-family: "Chalkduster", fantasy;
+}
+header a{
+    font-size: 20px;
+    font-family: "Chalkduster", fantasy;
+    font-weight: 600;
+    color:black;
+    padding: 5px;
+    text-decoration: none;
+}
+header b:hover{
+    color:black;
+}
+#page01{
+    background-image: url('../img/pg1.gif');
+    background-size: cover;
+    height: 100vh;
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    justify-content: center;
+}
+#intro{
+    position: absolute;
+    top: 15%;
+    height: 240px;
+}
+#intro h1{
+    font-family: 'Nanum Pen Script', cursive;
+    text-align: center;
+    color: black;
+    font-size: 72px;
+    font-weight: 600;
+}
+@bg: #2d2d37; // Dark blue
+@primary: #fd6b21; // Orange
+
+
+#intro a { color: white; text-decoration: none; }
+
+#arrowimg {
+	height: 60px;
+}
+.arrow {
+  text-align: center;
+  margin: 33% 0;
+  
+}
+.bounce {
+  -moz-animation: bounce 2s infinite;
+  -webkit-animation: bounce 2s infinite;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+
+h3{
+    text-align: center;
+    color: black;
+    font-family: 'Nanum Pen Script', cursive;
+    font-size:30px;
+    font-weight: 400;
+}
+#page02{
+    background-image: url('../img/pg2.gif');
+    background-size: cover;
+    height: 100vh;
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    justify-content: center;
+}
+#web{
+    max-width: 800px;
+    margin-left: 150px;
+    -webkit-box-flex: 1;
+    flex: 1;
+}
+#nowim{
+    position: absolute;
+    top: 15%;
+    height: 240px;
+}
+#nowim h1{
+    font-family: "Apple SD Gothic Neo", sans-serif;
+    font-weight: 700;
+    font-size: 60px;
+    line-height: 1.5;
+    color: #fff;
+    text-align: center;
+}
+#nowim h2{
+    font-family: "Apple SD Gothic Neo", sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 1.5;
+    color: #fff;
+    text-align: center;
+    
+}
+#page03{
+    background: -webkit-linear-gradient(to right, #ffd194, #70e1f5);
+    background: linear-gradient(to right, #ffd194, #70e1f5);
+    display:flex;
+    
+}
+/* .pg03title{
+    text-align: center;
+    padding-top: 120px;
+    font-family: 'Nanum Pen Script', cursive;
+    font-weight: 400;
+    font-size: 60px;
+    line-height: 1.5;
+    text-align: center;
+} */
+#page03 h1{
+    margin-left: 10px;
+    padding-top: 20%;
+    font-family: 'Nanum Pen Script', cursive;
+    font-weight: 400;
+    font-size: 60px;
+    line-height: 1.5;
+    text-align: center;
+}
+.contents{
+    position: relative;
+    display: -webkit-flex;
+    display: flex;
+    margin-top: 20%;
+}
+.likelists{
+    -webkit-box-flex: 1;
+    flex:1;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+.cover{
+    margin-left: 35%;
+    width: 150px;
+    height: 150px;
+    border-radius: 70%;
+    overflow: hidden;
+}
+.like_img{
+    width: 150px;
+    height: 150px;
+    display: inline;
+    object-fit: cover;
+}
+.like_cap{
+    margin-top: 30px;
+    font-family: 'Nanum Pen Script', cursive;
+    font-weight: 400;
+    font-size: 20px;
+    line-height:1.5;
+}
+#page04{
+    background: cornsilk;
+}
+#page04 h1{
+    padding-top: 120px;
+    font-family: 'Nanum Pen Script', cursive;
+    font-weight: 600;
+    font-size: 60px;
+    text-align: center;
+}
+.boutmysf{
+    display: flex;
+    margin-top: 130px;
+}
+.boutlist{
+    flex:1;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+.boutlist p{
+    font-family: 'Nanum Pen Script', cursive;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 6;
+}
+.boutlist p:hover{
+    font-size: 0;
+}
+.boutlist p:hover::before{
+    font-size: 25px;
+    font-weight: bold;
+    color: #c20db9;
+}
+.boutlist #bout01:hover::before{
+    content: '이재민';
+}
+.boutlist #bout04:hover::before{
+    content: '부경대학교';
+}
+.boutlist #bout07:hover::before{
+    content: 'IT융합응용공학과';
+}
+.boutlist #bout02:hover::before{
+    content: '1994년 1월 22일';
+}
+.boutlist #bout05:hover::before{
+    content: 'Kendrick Lamar';
+}
+.boutlist #bout08:hover::before{
+    content: '충만';
+}
+.boutlist #bout03:hover::before{
+    content: 'LiverPool !';
+}
+.boutlist #bout06:hover::before{
+    content: '헤이즐넛 !';
+}
+.boutlist #bout09:hover::before{
+    content: 'ENFJ';
+}
+#page05 {
+    background: white;
+}
+#page05 h1{
+    padding-top: 120px;
+    line-height: 1.5;
+    font-family: 'Nanum Pen Script', cursive;
+    font-weight: 600;
+    font-size: 60px;
+    text-align: center;
+}
+#page05 h3{
+    font-family: 'Nanum Pen Script', cursive;
+    line-height: 1.5;
+    font-weight: 300;
+    font-size: 25px;
+    text-align: center;
+}
+.contact{
+    text-align:center;
+}
+.contact img{
+    width: 100px;
+    margin-top: 140px;
+    padding: 50px;
+    display: inline;
+}
+.contact a{
+    text-decoration: none;
+}
+footer{
+    margin-left: 10px;
+}

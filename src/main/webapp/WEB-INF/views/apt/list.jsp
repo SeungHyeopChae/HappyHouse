@@ -41,7 +41,7 @@
 			
 			$("#pg").val(($(this).attr("data-pg")));
 			
-			$("#pageform").attr("action", "${root}/house/search?dong=all").submit();
+			$("#pageform").attr("action", "${root}/house/search").submit();
 		});
 		
 
@@ -59,6 +59,9 @@
 </head>
 <body>
 	<%@include file="../viewers/header.jsp" %>
+	<form name="pageform" id="pageform" method="GET" action="">
+		<input type="hidden" name="pg" id="pg" value="">  
+	</form>
 
 		<!--HAPPY HOUSE 행복한 우리집-->
 		<div class="banner dark-translucent-bg">
@@ -98,7 +101,6 @@
 								</div>
 								<hr>
 							</c:forEach>
-							
 						</div>
 						<table>
 								<tr>
@@ -106,11 +108,42 @@
 									${navigation.navigator}
 									</td>
 								</tr>
-							</table>
+						</table>
 					</div>
 
 				</aside>
+				
+				<form id="searchform" method="get" class="form-inline" action="">
+	  <input type="hidden" name="pg" id="pg" value="1">
+	  <table class="table table-borderless">
+	  	<tr>
+	  		<td align="right">
+		  	  <select class="form-control" name="key" id="skey">
+			    <option value="userid" selected="selected">아이디</option>
+			    <option value="articleno">글번호</option>
+			    <option value="subject">제목</option>
+			  </select>
+			  <input type="text" class="form-control" placeholder="검색어 입력." name="word" id="sword">
+			  <button type="button" id="searchBtn" class="btn btn-primary">검색</button>
+			</td>
+	  	</tr>
+	  </table>
+	  </form>
 			</section>
+			
+	  <table class="table table-borderless">
+	  	<tr>
+	  		<td align="right">
+		  	  <select class="form-control" name="spp" id="spp" onchange="javascript:countList();">
+			    <option value="10" selected="selected">10개씩보기</option>
+			    <option value="20">20개씩보기</option>
+			    <option value="50">50개씩보기</option>
+			  </select>
+			</td>
+	  	</tr>
+	  </table>
+
+			
 			<!--지도 부분-->
 			<div class="container justify-content-right"
 				style="margin-top: 50px;">
@@ -118,17 +151,8 @@
 				<div id="map"
 					style="width: 800px; height: 400px; margin-left: auto; margin-right: auto;"></div>
 			</div>
-
-
 		</div>
-
-
-
-
-
-
-
-
+		
 		<%@include file="../viewers/footer.jsp" %>
 		<script src="js/jquery.min.js"></script>
 		<script src="js/bootstrap.bundle.min.js"></script>

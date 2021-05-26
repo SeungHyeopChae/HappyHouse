@@ -74,7 +74,7 @@
 		document.location.href = "${root}/member/regist";
 	}
 	function search() {
-		document.getElementById("frm").action = "${root}/house/search?dong="+ document.getElementById("dong").value;
+		document.getElementById("frm").action = "${root}/house/search?dong="+ document.getElementById("dong").value+"&pg=1";
 		document.getElementById("frm").submit();
 	}
 	function searchlike() {
