@@ -77,32 +77,33 @@ function resmodify() {
 						
 							<div class="row marginTop">
 								<h6>아이디 </h6>
-								<input type="hidden" name="userId" id="userId"
+								<p class="text-warning mr-2"> *</p>
+								<input type="hidden" name="userId" id="userId" style="width:163px; height:30px;"
 									value="${userinfo.userId} ">
 								<label>        ${userinfo.userId}</label>
 							</div>
 							<div class="row marginTop">
 								<h6>비밀번호</h6>
 								<p class="text-warning">*</p>
-								<input type="text"  id="userPwd"
+								<input type="text"  id="userPwd" style="width:160px; height:30px;"
 									name="userPwd" value="${userinfo.userPwd }">
 							</div>
 							<div class="row marginTop">
 								<h6>이름</h6>
-								<p class="text-warning">*</p>
-								<input type="text"  id="userName"
+								<p class="text-warning mr-4"> *</p>
+								<input type="text"  id="userName" style="width:165px; height:30px;"
 									name="userName" value="${userinfo.userName }">
 							</div>
 							<div class="row marginTop">
 								<h6>주소</h6>
-								<p class="text-warning">*</p>
-								<input type="text"  id="address"
+								<p class="text-warning mr-4"> *</p>
+								<input type="text"  id="address" style="width:160px; height:30px;"
 									name="address" value="${userinfo.address }">
 							</div>
 							<div class="row marginTop">
 								<h6>이메일</h6>
-								<p class="text-warning">*</p>
-								<input type="text" id="email" name="email"
+								<p class="text-warning mr-2"> *</p>
+								<input type="text" id="email" name="email" style="width:160px; height:30px;"
 									value="${userinfo.email}">
 							</div>
 							<div>

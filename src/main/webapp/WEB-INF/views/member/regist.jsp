@@ -99,33 +99,34 @@
 						<input type="hidden" name="act" id="act" value="join">
                         <div class="row marginTop"> 
                             <h6>아이디 </h6>
-                            <p class="text-warning"> *</p>
-                            <input type="text"  id="userId" name="userId" placeholder="">
-                            <button type="button" class="btn btn-warning marginTop" onclick="javascript:check();">중복체크</button>
+                            <p class="text-warning mr-2"> *</p>
+                            <input type="text"  id="userId" name="userId" placeholder="" style="width:163px; height:30px;">
+                           
                         </div>
                         <div class="row marginTop"> 
                             <h6>비밀번호 </h6>
                             <p class="text-warning"> *</p>
-                            <input type="password"  id="userPwd" name="userPwd" placeholder="">
+                            <input type="password"  id="userPwd" name="userPwd" placeholder="" style="width:160px; height:30px;">
                         </div>
                         <div class="row marginTop"> 
                             <h6>이름 </h6>
-                            <p class="text-warning"> *</p>
-                            <input type="text"  id="userName" name="userName" placeholder="">
+                            <p class="text-warning mr-4"> *</p>
+                            <input type="text"  id="userName" name="userName" placeholder="" style="width:165px; height:30px;">
                         </div>
                         <div class="row marginTop"> 
                             <h6>주소 </h6>
-                            <p class="text-warning"> *</p>
-                            <input type="text"  id="address" name="address" placeholder="">
+                            <p class="text-warning mr-4"> *</p>
+                            <input type="text"  id="address" name="address" placeholder=""style="width:160px; height:30px;">
                         </div>
                         <div class="row marginTop"> 
                             <h6>이메일 </h6>
-                            <p class="text-warning"> *</p>
-                            <input type="text"  id="email" name="email" placeholder="">
+                            <p class="text-warning mr-2"> *</p>
+                            <input type="text"  id="email" name="email" placeholder=""style="width:160px; height:30px;">
                         </div>
                 
                         
                         <div>
+                         <button type="button" class="btn btn-warning marginTop"onclick="javascript:check();">아이디 중복체크</button>
                             <button type="button" class="btn btn-warning marginTop" onclick="javascript:regist();">등록 ✔</button>
                         </div>
                         
